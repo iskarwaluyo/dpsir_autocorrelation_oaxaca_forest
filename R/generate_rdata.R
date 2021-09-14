@@ -41,6 +41,8 @@ datos_maderable <- cbind(apm, apnm, pm, pnm, vpm, vpnm)
 datos_maderable <- datos_maderable[,-2]
 
 ac_mapa <- ms_simplify(ac_mapa, keep = 0.05)
+ac_mapa_regiones <- ms_simplify(ac_mapa_regiones, keep = 0.05)
+
 
 ac_mapa_maderable <- merge(ac_mapa, datos_maderable, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
 

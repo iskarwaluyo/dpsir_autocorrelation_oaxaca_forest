@@ -17,9 +17,9 @@ m0 <- leaflet(ac_mapa) %>%
 
 m0 <- m0 %>%  addPolygons(data = ac_mapa_regiones, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
-                          fillOpacity = 1,
-                          fillColor = FALSE,
-                          opacity = .95,
+                          fillOpacity = .1,
+                          fillColor = "transparent",
+                          opacity = .5,
                           weight = 1,
                           color = "#4D4D4D",
                           dashArray = "2",
@@ -33,8 +33,7 @@ m0 <- m0 %>%  addPolygons(data = ac_mapa_regiones, stroke = TRUE, smoothFactor =
                           labelOptions = labelOptions(
                             style = list("font-weight" = "normal", padding = "3px 8px"),
                             textsize = "15px",
-                            direction = "auto"),
-                          popup = ~pop_driver_maderable)
+                            direction = "auto"))
 
 m0 <- m0 %>%  addPolygons(data = ac_mapa_maderable, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
