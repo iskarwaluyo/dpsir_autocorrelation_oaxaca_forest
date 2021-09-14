@@ -9,8 +9,7 @@ library(rgdal)
 # LECTURA DE GEOJSON COMO UN SP (SPATIAL POLYGON DATA FRAME)
 ac_mapa <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_mun.geojson")
 ac_psa <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_psa.geojson")
-ac_mapa_regiones <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_regiones.geojson")
-ac_mapa_cobertura <- 
+ac_mapa_regiones <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/oax_regiones.geojson")
   
   
 # LECTURA DE GEOJSON COMO UN SF (SIMPLE FEATURES)
