@@ -1,0 +1,15 @@
+MAPA DPSIR OAXACA
+
+DESCRIPCIÓN BREVE DE LOS CÓDIGOS
+
+1. export_shp.R
+
+Código para exportar los mapas que resulten de la manipulación de los datos en un archivo .shp. 
+
+2. generate_rdata.R
+
+Código que lee todos los datos de github y genera archivos RData para el mapa interactivo
+
+3. global.R, server.R, ui.R
+
+Son archivos de la app. 

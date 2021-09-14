@@ -1,0 +1,64 @@
+INDICADORES
+
+MADERABLES
+APM - Volumen de aprovechamiento maderable (m3)
+APNM - Volumen de aprovechamiento no maderable (ton)
+PM - Valor de la producción maderable (miles de pesos)
+PNM - Valor de la producción no maderable (miles de pesos)
+VPM - Valor 
+VPNM -
+
+AGRÍCOLAS
+SCC - Superficie Cosechada de Cultivo principal en hectáreas
+SSR - Superficie Sembrada de Riego en hectáreas
+SST - Superficie Sembrada de Temporal en hectáreas
+SSC - Superficie Sembrada de de Cultivo principal en hectáreas
+VPC - Valor de la Producción agrícola en millones de pesos
+
+GANDEROS
+
+PT - Volumen total de la producción (toneladas)
+VT - Valor total de la producción (miles de pesos)
+
+0 - No significativo
+1 - Alto/Alto (rojo)
+2 - Bajo/Bajo (azul)
+3 - Bajo/Alto (celeste)
+4 - Alto/Bajo (rosa)
+
+Cuantos municipios hay de cada tipo de cluster por indicador. 
+
+DRIVERS
+
+VALOR DE PRODUCCIÓN MADERABLE (2016) - VPM_2016
+VALOR DE PRODUCCIÓN NO MADERABLE (2016) - VPNM_2016
+VALOR DE PRODUCCIÓN AGRÍCOLA (2016) - VPC_2016
+VALOR DE PRODUCCIÓN GANADERA (2016) - VPT_2016
+POBLACIÓN (2015) - POB_2015
+
+PRESSURE
+
+PORCENTAJE DE SUPERFICE OCUPADA CON ACTIVIDAD AGRÍCOLA (2016) - SSCPCT_2016
+
+STATE (NINGUNA AÚN)
+
+IMPACT
+
+APROVECHAMIENTO MADERABLE (2016) - APM_2016
+APROVECHAMIENTO NO MADREABLE (2016) - APNM_2016
+
+
+RESPONSE
+
+PORCENTAJE DE SUPERFICE CON PSA (2018) - PCT_PSA
+
+
+
+
+
+
+
+
+
+
+

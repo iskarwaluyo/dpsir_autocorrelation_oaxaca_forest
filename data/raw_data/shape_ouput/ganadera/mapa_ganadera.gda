@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+    <title>mapa_ganadera</title>
+    <layers>
+        <layer>
+            <datasource>
+                <type>ESRI Shapefile</type>
+                <path>mapa_ganadera.shp</path>
+            </datasource>
+            <layername>mapa_ganadera</layername>
+            <title/>
+            <variable_order>
+                <time_ids>
+                    <id>time 0</id>
+                </time_ids>
+                <var>ID_REINA</var>
+                <var>CVEGEO</var>
+                <var>CVE_ENT</var>
+                <var>CVE_MUN</var>
+                <var>NOMGEO</var>
+                <var>PT_2012</var>
+                <var>PT_2013</var>
+                <var>PT_2014</var>
+                <var>PT_2015</var>
+                <var>PT_2016</var>
+                <var>CVEGEO_1</var>
+                <var>NOMBRE</var>
+                <var>VPT_2012</var>
+                <var>VPT_2013</var>
+                <var>VPT_2014</var>
+                <var>VPT_2015</var>
+                <var>VPT_2016</var>
+                <var>
+                    LISA_I
+                    <displayed_decimals>6</displayed_decimals>
+                </var>
+                <var>LISA_CL</var>
+                <var>
+                    LISA_P
+                    <displayed_decimals>6</displayed_decimals>
+                </var>
+            </variable_order>
+            <custom_classifications/>
+            <weights_entries>
+                <weights>
+                    <title>mapa_ganadera</title>
+                    <default/>
+                    <meta_info>
+                        <weights_type>queen</weights_type>
+                        <order>1</order>
+                        <inc_lower_orders>false</inc_lower_orders>
+                        <path>/home/iskar/Documents/PAPER_JOSEGARCIA/dpsir_model_oaxaca/data/raw_data/geoda/mapa_ganadera.gal</path>
+                        <id_variable>ID_REINA</id_variable>
+                        <symmetry>symmetric</symmetry>
+                        <num_observations>570</num_observations>
+                        <min_neighbors>1</min_neighbors>
+                        <max_neighbors>22</max_neighbors>
+                        <mean_neighbors>5.8</mean_neighbors>
+                        <median_neighbors>5</median_neighbors>
+                        <non_zero_perc>1.017543859649123</non_zero_perc>
+                    </meta_info>
+                </weights>
+            </weights_entries>
+            <default_vars>
+                <default_var>
+                    <name>VPT_2016</name>
+                    <time_id>time 0</time_id>
+                </default_var>
+                <default_var>
+                    <name/>
+                    <time_id>time 0</time_id>
+                </default_var>
+                <default_var>
+                    <name/>
+                    <time_id>time 0</time_id>
+                </default_var>
+                <default_var>
+                    <name/>
+                    <time_id>time 0</time_id>
+                </default_var>
+            </default_vars>
+        </layer>
+    </layers>
+</project>
