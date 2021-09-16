@@ -7,13 +7,14 @@ library(rgdal)
 # LECTURA DE DATOS ALMACENADOS EN GITHUB
 
 # LECTURA DE GEOJSON COMO UN SP (SPATIAL POLYGON DATA FRAME)
-ac_mapa <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_mun.geojson")
-ac_psa <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_psa.geojson")
-ac_mapa_regiones <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/oax_regiones.geojson")
-  
+mun_mapa <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_mun.geojson")
+mun_mapa_psa <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_psa.geojson")
+mun_mapa_regiones <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/oax_regiones.geojson")
+
+psa_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/mun_auto_psa.geojson")
   
 # LECTURA DE GEOJSON COMO UN SF (SIMPLE FEATURES)
-ac_mapa_sf <- st_read("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_mun.geojson")
+mun_mapa_sf <- st_read("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_mun.geojson")
 
 
 # LECTURA DE INDICADORES DE LA PRODUCCIÓN MADERABLE Y NO MADERABLE DE GITHUB
@@ -40,11 +41,11 @@ datos_maderable <- cbind(apm, apnm, pm, pnm, vpm, vpnm)
 
 datos_maderable <- datos_maderable[,-2]
 
-ac_mapa <- ms_simplify(ac_mapa, keep = 0.05)
-ac_mapa_regiones <- ms_simplify(ac_mapa_regiones, keep = 0.05)
+mun_mapa <- ms_simplify(mun_mapa, keep = 0.05)
+mun_mapa_regiones <- ms_simplify(mun_mapa_regiones, keep = 0.05)
 
 
-ac_mapa_maderable <- merge(ac_mapa, datos_maderable, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
+mun_mapa_maderable <- merge(mun_mapa, datos_maderable, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
 
 # LECTURA DE INDICADORES DE LA PRODUCCIÓN AGRICOLA DE GITHUB
 # FUENTE: ACTUALIZACIÓN DEL MARCO SENSAL AGROPECUARIO 2016
@@ -67,7 +68,7 @@ datos_agricola <- cbind(scc, ssc, vpc, ssr, sst)
 
 datos_agricola <- datos_agricola[,-2]
 
-ac_mapa_agricola <- merge(ac_mapa, datos_agricola, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
+mun_mapa_agricola <- merge(mun_mapa, datos_agricola, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
 
 # LECTURA DE INDICADORES DE LA PRODUCCIÓN GANADERA DE GITHUB
 # FUENTE: ACTUALIZACIÓN DEL MARCO SENSAL AGROPECUARIO 2016
@@ -83,7 +84,7 @@ datos_ganadera <- cbind(pt, vpt)
 
 datos_ganadera <- datos_ganadera[,-2]
 
-ac_mapa_ganadera <- merge(ac_mapa, datos_ganadera, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
+mun_mapa_ganadera <- merge(mun_mapa, datos_ganadera, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
 
 # LECTURA DE DATOS SOBRE LA POBLACIÓN
 
@@ -94,7 +95,7 @@ colnames(pob) <- toupper(colnames(pob))
 
 datos_pob <- cbind(pob)
 
-ac_mapa_pob <- merge(ac_mapa, datos_pob, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
+mun_mapa_pob <- merge(mun_mapa, datos_pob, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
 
 # LECTURA DE DATOS SOBRE LOS PAGOS DE SERVICIOS AMBIENTALES
 # FUENTE: CONAFOR (2018)
@@ -106,23 +107,23 @@ colnames(psa) <- toupper(colnames(psa))
 
 psa_x <- ddply(psa, .(CVE_MUN), summarise, SUMA_PSA = sum(SUP_MUN_ZE))
 
-ac_mapa_psa <- merge(ac_mapa, psa_x, by.x = "CVEGEO", by.y = "CVE_MUN", all.x = TRUE, all.y = TRUE)
-ac_mapa_psa@data[is.na(ac_mapa_psa@data)] <- 0
+mun_mapa_psa <- merge(mun_mapa, psa_x, by.x = "CVEGEO", by.y = "CVE_MUN", all.x = TRUE, all.y = TRUE)
+mun_mapa_psa@data[is.na(mun_mapa_psa@data)] <- 0
 
-ac_mapa_psa$PCT_PSA <- 100*(ac_mapa_psa$SUMA_PSA/as.numeric(ac_mapa_psa$AREA))
+mun_mapa_psa$PCT_PSA <- 100*(mun_mapa_psa$SUMA_PSA/as.numeric(mun_mapa_psa$AREA))
 
 # DATOS DE AUTOCORRELACIONES
 # FUENTE: ELABORACIÓN PROPIA CON SOFTWARE GEODA
 
 autocorr1 <- import("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/csv/autocorr_2016.csv")
 
-ac_mapa_autocorr <- merge(ac_mapa, autocorr1, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
+mun_mapa_autocorr <- merge(mun_mapa, autocorr1, by = "CVEGEO", all.x = TRUE, all.y = TRUE)
 
 
 # CREAR ARCHIVOS TIPO RData PARA ALMACENAR LOS RESULTADOS DEL PROCESAMIENTO DE LOS DATOS
 setwd("/media/iskar/archivos/MAPAS/mapasR/dpsir_autocorrelation_oaxaca_forest/data/Rdata/")
 
-save(ac_mapa, ac_mapa_maderable, ac_mapa_agricola, ac_mapa_ganadera, ac_mapa_autocorr, ac_mapa_pob, ac_mapa_psa, ac_mapa_regiones, file = "carto.RData")
+save(mun_mapa, mun_mapa_maderable, mun_mapa_agricola, mun_mapa_ganadera, mun_mapa_autocorr, mun_mapa_pob, mun_mapa_psa, mun_mapa_regiones, file = "carto.RData")
 save(apm, apnm, pm, pnm, vpm, vpnm, scc, ssc, vpc, ssr, sst, pt, vpt, pob, psa, autocorr1, file = "datos.RData")
 
 

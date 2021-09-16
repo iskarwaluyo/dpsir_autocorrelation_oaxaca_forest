@@ -1,4 +1,4 @@
-m2 <- leaflet(ac_mapa) %>%
+m2 <- leaflet(mun_mapa) %>%
   addMapPane("A", zIndex = 490) %>% #
   addMapPane("B", zIndex = 480) %>% # 
   addMapPane("C", zIndex = 470) %>% # 
@@ -12,7 +12,7 @@ m2 <- leaflet(ac_mapa) %>%
               fillColor = ~pal(as.numeric(CVE_MUN)),
               label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ",")))
 
-m2 <- m2 %>%  addPolygons(data = ac_mapa_agricola, stroke = FALSE, smoothFactor = 0.3,
+m2 <- m2 %>%  addPolygons(data = mun_mapa_agricola, stroke = FALSE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
                           fillOpacity = .7,
                           fillColor = ~pal_sst(sum),

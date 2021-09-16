@@ -92,19 +92,12 @@ bins_psa <- c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
 pal_psa <- colorBin(palette = "Greens", domain = ac_mapa_psa$PCT_PSA, bins = bins_psa)
 
 # AUTOCORRELACION
-pal_autocorr <- colorBin( palette="magma", domain = ac_mapa_autocorr$VPT_LISA_CL, bins = bins_autocorr)
 
-bins_autocorr <- c(0,1,2,3,4)
-
-azul_a <- rgb(1/255, 7/255, 255/255, 1)
-azul_b <- rgb(177/255, 209/255, 230/255, 1)
-blanco <- rgb(255/255, 255/255, 255/255, 1)
-rojo_a <- rgb(250/255, 112/255, 105/255, 1)
-rojo_b <- rgb(255/255, 0/255, 0/255, 1)
-
-geoda_colors <- c(azul_a, azul_b, blanco, rojo_a, rojo_b)
+pal_autocorr <- colorFactor(c("#e4e4e4", "#ff2500", "#0432ff", "#a6aaff", "#ffa8a6"), 0:4)
 
 # PALETA DE COLORES
+
+pal_reg <- colorFactor("Set1", ac_mapa_regiones$REGION)
 
 pal2 <- colorNumeric(
   palette = "Blues",
@@ -128,7 +121,6 @@ palb <- colorFactor( palette="Spectral", 1:7)
 #vars <- colnames(matriz_correlacion)
 
 # POP-UPS MADERABLE
-
 pop_driver_maderable <- paste0("<b><br/> MUNICIPIO: </b>", ac_mapa$NOMGEO,
                                "<b><br/> SUPERFICIE: </b>", ac_mapa$AREA,
                                "<b><br/> VALOR DE PRODUCCIÓN MADERABLE: </b>", ac_mapa_maderable$VPM_2016)
@@ -145,7 +137,6 @@ pop_driver_ganadera <- paste0("<b><br/> MUNICIPIO: </b>", ac_mapa$NOMGEO,
                               "<b><br/> SUPERFICIE: </b>", ac_mapa$AREA,
                               "<b><br/> VALOR DE PRODUCCIÓN DE GANADERA: </b>", ac_mapa_ganadera$VPT_2016,
                               "<b><br/> VOLUMEN DE PRODUCCIÓN GANADERA: </b>", ac_mapa_ganadera$PT_2016)
-
 
 pop_driver_poblacion <- paste0("<b><br/> MUNICIPIO: </b>", ac_mapa$NOMGEO,
                               "<b><br/> SUPERFICIE: </b>", ac_mapa$AREA,
@@ -188,6 +179,11 @@ pop_response <- paste0("<b><br/> MUNICIPIO: </b>", ac_mapa$NOMGEO,
                        "<b><br/> SUPERFICIE: </b>", ac_mapa$AREA,
                        "<b><br/> SUPERFICE ELEGIBLE PARA PSA: </b>", ac_mapa_psa$sum)
 
+# POP-UPS AUTOCORR
+
+pop_psa_autocor <- paste0("<b><br/> MUNICIPIO: </b>", psa_autocor$NOMGEO,
+                       "<b><br/> SUPERFICIE CON PSA: </b>", psa_autocor$PCT_PSA,
+                       "<b><br/> AUTOCORRELACIÓN PSA: </b>", psa_autocor$CL_PCTPSA)
 
 # AUTOCORRELATION (GEODA) (SOLO JALA CON SF NO SP)
 

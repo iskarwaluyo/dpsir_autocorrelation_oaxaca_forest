@@ -12,8 +12,8 @@ m4 <- leaflet(ac_mapa) %>%
               fillColor = ~rev(pal_psa(as.numeric(CVE_MUN))),
               label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ",")))
 
-m4 <- m4 %>%  addPolygons(data = ac_mapa_psa, stroke = TRUE, smoothFactor = 0.3,
-                          options = pathOptions(pane = "A"),
+m4 <- m4 %>%  addPolygons(data = mun_mapa_psa, stroke = TRUE, smoothFactor = 0.3,
+                          options = pathOptions(pane = "B"),
                           fillOpacity = .7,
                           fillColor = ~pal_psa(PCT_PSA),
                           opacity = .3,
@@ -33,10 +33,31 @@ m4 <- m4 %>%  addPolygons(data = ac_mapa_psa, stroke = TRUE, smoothFactor = 0.3,
                             direction = "auto"),
                           popup = ~pop_response)
 
+m4 <- m4 %>%  addPolygons(data = psa_autocor, stroke = TRUE, smoothFactor = 0.3,
+                          options = pathOptions(pane = "A"),
+                          fillOpacity = .7,
+                          fillColor = ~pal_autocorr(CL_PCTPSA),
+                          opacity = .3,
+                          weight = 1,
+                          color = "#4D4D4D",
+                          dashArray = "2",
+                          highlight = highlightOptions(
+                            weight = 1,
+                            color = "#4D4D4D",
+                            fillOpacity = 0.1,
+                            dashArray = "2",
+                            bringToFront = TRUE),
+                          group = "AUTOCORRELACIÓN",
+                          labelOptions = labelOptions(
+                            style = list("font-weight" = "normal", padding = "3px 8px"),
+                            textsize = "15px",
+                            direction = "auto"),
+                          popup = ~pop_psa_autocor)
+
 # CONTROL DE CAPAS
 m4 <- m4 %>% addLayersControl(
   baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-  overlayGroups = c("PAGOS PSA"),
+  overlayGroups = c("PAGOS PSA", "AUTOCORRELACIÓN"),
   options = layersControlOptions(collapsed = FALSE)
 )
 

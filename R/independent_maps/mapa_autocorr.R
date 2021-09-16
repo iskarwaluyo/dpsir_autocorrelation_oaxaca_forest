@@ -1,4 +1,4 @@
-m5 <- leaflet(ac_mapa) %>%
+m5 <- leaflet(mun_mapa) %>%
   addMapPane("A", zIndex = 490) %>% #
   addMapPane("B", zIndex = 480) %>% # 
   addMapPane("C", zIndex = 470) %>% # 
@@ -12,7 +12,7 @@ m5 <- leaflet(ac_mapa) %>%
               fillColor = ~pal(as.numeric(CVE_MUN)),
               label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ",")))
 
-m5 <- m5 %>%  addPolygons(data = ac_mapa_autocorr, stroke = TRUE, smoothFactor = 0.3,
+m5 <- m5 %>%  addPolygons(data = mun_mapa_autocorr, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
                           fillOpacity = 1,
                           fillColor = ~pal(VPM_LISA_CL),
@@ -32,7 +32,7 @@ m5 <- m5 %>%  addPolygons(data = ac_mapa_autocorr, stroke = TRUE, smoothFactor =
                             textsize = "15px",
                             direction = "auto"))
 
-m5 <- m5 %>%  addPolygons(data = ac_mapa_autocorr, stroke = TRUE, smoothFactor = 0.3,
+m5 <- m5 %>%  addPolygons(data = mun_mapa_autocorr, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "B"),
                           fillOpacity = 1,
                           fillColor = ~pal(VPNM_LISA_CL),
@@ -52,7 +52,7 @@ m5 <- m5 %>%  addPolygons(data = ac_mapa_autocorr, stroke = TRUE, smoothFactor =
                             textsize = "15px",
                             direction = "auto"))
 
-m5 <- m5 %>%  addPolygons(data = ac_mapa_autocorr, stroke = TRUE, smoothFactor = 0.3,
+m5 <- m5 %>%  addPolygons(data = mun_mapa_autocorr, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "C"),
                           fillOpacity = 1,
                           fillColor = ~pal(VPC_LISA_CL),
@@ -72,7 +72,7 @@ m5 <- m5 %>%  addPolygons(data = ac_mapa_autocorr, stroke = TRUE, smoothFactor =
                             textsize = "15px",
                             direction = "auto"))
 
-m5 <- m5 %>%  addPolygons(data = ac_mapa_autocorr, stroke = TRUE, smoothFactor = 0.3,
+m5 <- m5 %>%  addPolygons(data = mun_mapa_autocorr, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "D"),
                           fillOpacity = 1,
                           fillColor = ~pal(VPT_LISA_CL),
@@ -102,8 +102,8 @@ m5 <- m5 %>% addLayersControl(
 
 m5
 
-addLegend(m5, "topleft", group = "PROD MADERABLE", pal = pal, values = ac_mapa_autocorr$VPM_LISA_CL, opacity = 1.0, title = "Timber forest production <br/> Autocorrelation")
-addLegend(m5, "topleft", group = "PROD NO MADERABLE", pal = pal, values = ac_mapa_autocorr$VPNM_LISA_CL, opacity = 1.0, title = "Non timber forest production <br/> Autocorrelation")
-addLegend(m5, "topleft", group = "PROD AGRÍCOLA", pal = pal, values = ac_mapa_autocorr$VPC_LISA_CL, opacity = 1.0, title = "Non timber forest production <br/> Autocorrelation")
-addLegend(m5, "topleft", group = "PROD GANADERA", pal = pal, values = ac_mapa_autocorr$VPT_LISA_CL, opacity = 1.0, title = "Non timber forest production <br/> Autocorrelation")
+addLegend(m5, "topleft", group = "PROD MADERABLE", pal = pal, values = mun_mapa_autocorr$VPM_LISA_CL, opacity = 1.0, title = "Timber forest production <br/> Autocorrelation")
+addLegend(m5, "topleft", group = "PROD NO MADERABLE", pal = pal, values = mun_mapa_autocorr$VPNM_LISA_CL, opacity = 1.0, title = "Non timber forest production <br/> Autocorrelation")
+addLegend(m5, "topleft", group = "PROD AGRÍCOLA", pal = pal, values = mun_mapa_autocorr$VPC_LISA_CL, opacity = 1.0, title = "Non timber forest production <br/> Autocorrelation")
+addLegend(m5, "topleft", group = "PROD GANADERA", pal = pal, values = mun_mapa_autocorr$VPT_LISA_CL, opacity = 1.0, title = "Non timber forest production <br/> Autocorrelation")
 

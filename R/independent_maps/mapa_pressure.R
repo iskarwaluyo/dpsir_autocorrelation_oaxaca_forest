@@ -1,4 +1,4 @@
-m1 <- leaflet(ac_mapa) %>%
+m1 <- leaflet(mun_mapa) %>%
   addMapPane("A", zIndex = 490) %>% #
   addMapPane("B", zIndex = 480) %>% # 
   addMapPane("C", zIndex = 470) %>% # 
@@ -12,7 +12,7 @@ m1 <- leaflet(ac_mapa) %>%
               fillColor = ~pal(as.numeric(CVE_MUN)),
               label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ",")))
 
-m1 <- m1 %>%  addPolygons(data = ac_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
+m1 <- m1 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
                           fillOpacity = .7,
                           fillColor = ~pal_pct(SSCPCT_2016),
@@ -33,7 +33,7 @@ m1 <- m1 %>%  addPolygons(data = ac_mapa_agricola, stroke = TRUE, smoothFactor =
                             direction = "auto"),
                           popup = ~pop_pressure_agricola)
 
-m1 <- m1 %>%  addPolygons(data = ac_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
+m1 <- m1 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
                           fillOpacity = .7,
                           fillColor = ~pal_pct(100*(as.numeric(SST_2016)/as.numeric(AREA))),
@@ -54,7 +54,7 @@ m1 <- m1 %>%  addPolygons(data = ac_mapa_agricola, stroke = TRUE, smoothFactor =
                             direction = "auto"),
                           popup = ~pop_pressure_agricola)
 
-m1 <- m1 %>%  addPolygons(data = ac_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
+m1 <- m1 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
                           fillOpacity = .7,
                           fillColor = ~pal_pct(100*(as.numeric(SSR_2016)/as.numeric(AREA))),
@@ -84,5 +84,5 @@ m1 <- m1 %>% addLayersControl(
 
 m1
 
-addLegend(m1, "topleft", group = "SUPERFICIE SEMBRADA", pal = pal_pct, values = ac_mapa_agricola$SSCPCT_2016, opacity = 1.0, title = "Area with agricultural activity <br/> (%)")
+addLegend(m1, "topleft", group = "SUPERFICIE SEMBRADA", pal = pal_pct, values = mun_mapa_agricola$SSCPCT_2016, opacity = 1.0, title = "Area with agricultural activity <br/> (%)")
 
