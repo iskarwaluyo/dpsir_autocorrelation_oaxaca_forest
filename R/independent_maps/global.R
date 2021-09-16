@@ -84,7 +84,7 @@ bins_apm <- c(0, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, Inf)
 pal_apm <- colorBin(palette= "Blues", domain = mun_mapa_maderable$APM_2016, bins = bins_apm)
 
 bins_apnm <- c(0, 500, 1000, 2000, Inf)
-pal_apnm <- colorBin(palette= "Blues", domain = mun_mapa_maderable$APM_2016, bins = bis_apnm)
+pal_apnm <- colorBin(palette= "Blues", domain = mun_mapa_maderable$APM_2016, bins = bins_apnm)
 
 # RESPONSE
 
@@ -148,6 +148,7 @@ pop_pressure_agricola <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
                                 "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
                                 "<b><br/> SUPERFICIE SEMBRADA: </b>", mun_mapa_agricola$SSC_2016)
 
+
 # POP-UPS STATE
 
 pop_state_agricola <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
@@ -184,6 +185,47 @@ pop_response <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
 pop_psa_autocor <- paste0("<b><br/> MUNICIPIO: </b>", psa_autocor$NOMGEO,
                        "<b><br/> SUPERFICIE CON PSA: </b>", psa_autocor$PCT_PSA,
                        "<b><br/> AUTOCORRELACIÓN PSA: </b>", psa_autocor$CL_PCTPSA)
+
+pop_maderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", maderable_autocor$NOMGEO,
+                          "<b><br/> VALOR PRODUCCIÓN MADERABLE: </b>", mun_mapa_maderable$VPM_2016,
+                          "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN MADERABLE: </b>", maderable_autocor$CL_VPM)
+
+pop_maderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", maderable_autocor$NOMGEO,
+                                "<b><br/> VALOR PRODUCCIÓN NO MADERABLE: </b>", mun_mapa_maderable$VPNM_2016,
+                                "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN NO MADERABLE: </b>", maderable_autocor$CL_VPNM)
+
+pop_agricultura_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
+                                "<b><br/> VALOR PRODUCCIÓN AGRÍCOLA: </b>", agricola_autocor$VPC_2016,
+                                "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN AGRÍCOLA: </b>", agricola_autocor$CL_VPV2016)
+
+
+pop_ganaderia_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
+                               "<b><br/> VALOR PRODUCCIÓN GANADERA: </b>", ganadera_autocor$VPT_2016,
+                               "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN GANADERA: </b>", ganadera_autocor$CL_VPT2016)
+
+pop_poblacion_autocor <-  paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
+                                 "<b><br/> VALOR PRODUCCIÓN GANADERA: </b>", pob_autocor$POB_2015,
+                                 "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN GANADERA: </b>", pob_autocor$CL_POB2015)
+
+pop_superficiesembrada_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
+                                         "<b><br/> SUPERFICIE SEMBRADA (%): </b>", agricola_autocor$SSCPCT_,
+                                         "<b><br/> AUTOCORRELACIÓN DE LA SUPERFICIE SEMBRADA: </b>", agricola_autocor$CL_SSCPCT)
+
+pop_aprovechamientomaderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
+                                         "<b><br/> APROVECHAMIENTO MADERABLE (): </b>", mun_mapa_maderable$APM_2016,
+                                         "<b><br/> AUTOCORRELACIÓN DEL APROVECHAMIENTO MADERABLE: </b>", maderable_autocor$CL_APM)
+
+pop_aprovechamientonomaderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
+                                                 "<b><br/> APROVECHAMIENTO NO MADERABLE (): </b>", mun_mapa_maderable$APNM_2016,
+                                                 "<b><br/> AUTOCORRELACIÓN DEL APROVECHAMIENTO NO MADERABLE: </b>", maderable_autocor$CL_APNM)
+
+pop_produccionagricola_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
+                                                 "<b><br/> PRODUCCIÓN AGRÍCOLA (): </b>", agricola_autocor$VPC_2016,
+                                                 "<b><br/> AUTOCORRELACIÓN DE LA PRODUCCIÓN AGRÍCOLA: </b>", agricola_autocor$CL_VPV2016)
+
+pop_produccionganadera_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
+                                                 "<b><br/> PRODUCCIÓN AGRÍCOLA (): </b>", ganadera_autocor$VPT_2016,
+                                                 "<b><br/> AUTOCORRELACIÓN DE LA PRODUCCIÓN AGRÍCOLA: </b>", ganadera_autocor$CL_VPT2016)
 
 # AUTOCORRELATION (GEODA) (SOLO JALA CON SF NO SP)
 

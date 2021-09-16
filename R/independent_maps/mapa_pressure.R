@@ -75,14 +75,37 @@ m1 <- m1 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor 
                             direction = "auto"),
                           popup = ~pop_pressure_agricola)
 
+m1 <- m1 %>%  addPolygons(data = agricola_autocor, stroke = TRUE, smoothFactor = 0.3,
+                          options = pathOptions(pane = "D"),
+                          fillOpacity = 1,
+                          fillColor = ~pal_autocorr(CL_SSCPCT),
+                          opacity = .3,
+                          weight = 1,
+                          color = "#4D4D4D",
+                          dashArray = "2",
+                          highlight = highlightOptions(
+                            weight = 1,
+                            color = "#4D4D4D",
+                            fillOpacity = 0.1,
+                            dashArray = "2",
+                            bringToFront = TRUE),
+                          group = "AUTOCORRELACIÓN SUPERFICIE SEMBRADA",
+                          labelOptions = labelOptions(
+                            style = list("font-weight" = "normal", padding = "3px 8px"),
+                            textsize = "15px",
+                            direction = "auto"),
+                          popup = ~pop_superficiesembrada_autocor)
+
 # CONTROL DE CAPAS
 m1 <- m1 %>% addLayersControl(
   baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-  overlayGroups = c("SUPERFICIE SEMBRADA", "SUPERFICIE TEMPORAL", "SUPERFICIE RIEGO"),
+  overlayGroups = c("SUPERFICIE SEMBRADA", "SUPERFICIE TEMPORAL", "SUPERFICIE RIEGO", "AUTOCORRELACIÓN SUPERFICIE SEMBRADA"),
   options = layersControlOptions(collapsed = FALSE)
 )
 
 m1
 
 addLegend(m1, "topleft", group = "SUPERFICIE SEMBRADA", pal = pal_pct, values = mun_mapa_agricola$SSCPCT_2016, opacity = 1.0, title = "Area with agricultural activity <br/> (%)")
+
+addLegend(m1, "topleft", group = "AUTOCORRELACIÓN SUPERFICIE SEMBRADA", pal = pal_autocorr, values = c(0:4), opacity = 1.0, title = "Area with agricultural activity autocorrelation")
 
