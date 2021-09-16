@@ -9,10 +9,14 @@ library(rgdal)
 # LECTURA DE GEOJSON COMO UN SP (SPATIAL POLYGON DATA FRAME)
 mun_mapa <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_mun.geojson")
 mun_mapa_psa <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_psa.geojson")
-mun_mapa_regiones <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/oax_regiones.geojson")
+mun_mapa_regiones <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_regiones.geojson")
 
-psa_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/mun_auto_psa.geojson")
-  
+psa_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/mun_auto_psa.geojson")
+agricola_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/mun_auto_agricola.geojson")
+ganadera_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/mun_auto_ganadera.geojson")
+pob_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/mun_auto_pob.geojson")
+
+
 # LECTURA DE GEOJSON COMO UN SF (SIMPLE FEATURES)
 mun_mapa_sf <- st_read("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_mun.geojson")
 
@@ -100,7 +104,7 @@ mun_mapa_pob <- merge(mun_mapa, datos_pob, by = "CVEGEO", all.x = TRUE, all.y = 
 # LECTURA DE DATOS SOBRE LOS PAGOS DE SERVICIOS AMBIENTALES
 # FUENTE: CONAFOR (2018)
 
-psa <- ac_psa@data
+psa <- mun_mapa_psa@data
 
 # CONVERTIR TODOS LOS ENCABEZADOS A MAYUSCULAS
 colnames(psa) <- toupper(colnames(psa)) 
@@ -124,7 +128,9 @@ mun_mapa_autocorr <- merge(mun_mapa, autocorr1, by = "CVEGEO", all.x = TRUE, all
 setwd("/media/iskar/archivos/MAPAS/mapasR/dpsir_autocorrelation_oaxaca_forest/data/Rdata/")
 
 save(mun_mapa, mun_mapa_maderable, mun_mapa_agricola, mun_mapa_ganadera, mun_mapa_autocorr, 
-     mun_mapa_pob, mun_mapa_psa, mun_mapa_regiones, psa_autocor, file = "carto.RData")
+     mun_mapa_pob, mun_mapa_psa, mun_mapa_regiones, psa_autocor, agricola_autocor, 
+     ganadera_autocor, pob_autocor, file = "carto.RData")
+
 save(apm, apnm, pm, pnm, vpm, vpnm, scc, ssc, vpc, ssr, sst, pt, vpt, pob, psa, autocorr1, file = "datos.RData")
 
 
