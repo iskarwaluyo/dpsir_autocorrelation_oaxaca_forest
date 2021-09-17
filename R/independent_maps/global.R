@@ -77,6 +77,9 @@ pal_pct <- colorBin(palette = "Oranges", bins = bins_pct)
 # STATE
 # LAND USE COVERAGE
 
+bins_primveg <- c(0, 500, 1000, 2000, 4000, 8000, 16000, 32000, Inf)
+pal_primveg <- colorBin(palette= "Greens", domain = mun_mapa_vegprimaria$AREA_2, bins = bins_primveg)
+
 # IMPACT
 # APROVECHAMIENTO MADERABLE Y NO MADERABLE
 
@@ -151,9 +154,9 @@ pop_pressure_agricola <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
 
 # POP-UPS STATE
 
-pop_state_agricola <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
+pop_state_primaria <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
                              "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                             "<b><br/> SUPERFICIE SEMBRADA: </b>", mun_mapa_agricola$SSC_2016)
+                             "<b><br/> SUPERFICIE CON VEGETACIÓN PRIMARIA (HA): </b>", mun_mapa_vegprimaria$AREA_2)
 
 # POP-UPS IMPACT
 

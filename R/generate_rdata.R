@@ -117,6 +117,16 @@ mun_mapa_psa@data[is.na(mun_mapa_psa@data)] <- 0
 
 mun_mapa_psa$PCT_PSA <- 100*(mun_mapa_psa$SUMA_PSA/as.numeric(mun_mapa_psa$AREA))
 
+# STATE
+
+
+mun_mapa_vegprimaria <- mun_mapa_usv[grep('^BOSQUE|^SELVA|MANGLAR|TULAR', 
+                                             mun_mapa_usv@data$DESCRIPCIO,),]
+
+mun_mapa_vegsecundaria <- mun_mapa_usv[grep('^VEGETACIÓN|CHAPARRAL|SABANOIDE', 
+                                              mun_mapa_usv@data$DESCRIPCIO,),]
+
+
 # DATOS DE AUTOCORRELACIONES
 # FUENTE: ELABORACIÓN PROPIA CON SOFTWARE GEODA
 
@@ -130,7 +140,7 @@ setwd("/media/iskar/archivos/MAPAS/mapasR/dpsir_autocorrelation_oaxaca_forest/da
 
 save(mun_mapa, mun_mapa_maderable, mun_mapa_agricola, mun_mapa_ganadera, mun_mapa_autocorr, 
      mun_mapa_pob, mun_mapa_psa, mun_mapa_regiones, psa_autocor, agricola_autocor, 
-     ganadera_autocor, pob_autocor, file = "carto.RData")
+     ganadera_autocor, pob_autocor, mun_mapa_vegprimaria, mun_mapa_vegsecundaria, file = "carto.RData")
 
 save(apm, apnm, pm, pnm, vpm, vpnm, scc, ssc, vpc, ssr, sst, pt, vpt, pob, psa, autocorr1, file = "datos.RData")
 
