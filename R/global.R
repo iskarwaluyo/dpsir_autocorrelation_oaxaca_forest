@@ -191,6 +191,13 @@ pop_psa_autocor <- paste0("<b><br/> MUNICIPIO: </b>", psa_autocor$NOMGEO,
                        "<b><br/> SUPERFICIE CON PSA: </b>", psa_autocor$PCT_PSA,
                        "<b><br/> AUTOCORRELACIÓN PSA: </b>", psa_autocor$CL_PCTPSA)
 
+pop_maderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", maderable_autocor$NOMGEO,
+                          "<b><br/> VALOR PRODUCCIÓN MADERABLE: </b>", mun_mapa_maderable$VPM_2016,
+                          "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN MADERABLE: </b>", maderable_autocor$CL_VPM)
+
+pop_maderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", maderable_autocor$NOMGEO,
+                                "<b><br/> VALOR PRODUCCIÓN NO MADERABLE: </b>", mun_mapa_maderable$VPNM_2016,
+                                "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN NO MADERABLE: </b>", maderable_autocor$CL_VPNM)
 
 pop_agricultura_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
                                 "<b><br/> VALOR PRODUCCIÓN AGRÍCOLA: </b>", agricola_autocor$VPC_2016,
@@ -209,6 +216,13 @@ pop_superficiesembrada_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_au
                                          "<b><br/> SUPERFICIE SEMBRADA (%): </b>", agricola_autocor$SSCPCT_,
                                          "<b><br/> AUTOCORRELACIÓN DE LA SUPERFICIE SEMBRADA: </b>", agricola_autocor$CL_SSCPCT)
 
+pop_aprovechamientomaderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
+                                         "<b><br/> APROVECHAMIENTO MADERABLE (): </b>", mun_mapa_maderable$APM_2016,
+                                         "<b><br/> AUTOCORRELACIÓN DEL APROVECHAMIENTO MADERABLE: </b>", maderable_autocor$CL_APM)
+
+pop_aprovechamientonomaderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
+                                                 "<b><br/> APROVECHAMIENTO NO MADERABLE (): </b>", mun_mapa_maderable$APNM_2016,
+                                                 "<b><br/> AUTOCORRELACIÓN DEL APROVECHAMIENTO NO MADERABLE: </b>", maderable_autocor$CL_APNM)
 
 pop_produccionagricola_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
                                                  "<b><br/> PRODUCCIÓN AGRÍCOLA (): </b>", agricola_autocor$VPC_2016,

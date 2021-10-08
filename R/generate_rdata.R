@@ -157,9 +157,10 @@ save(mun_mapa, mun_mapa_maderable, mun_mapa_agricola, mun_mapa_ganadera, mun_map
      mun_mapa_pob, mun_mapa_psa, mun_mapa_regiones, psa_autocor, agricola_autocor, 
      ganadera_autocor, pob_autocor, mun_mapa_vegprimaria, mun_mapa_vegsecundaria, file = "carto.RData")
 
-save(apm, apnm, pm, pnm, vpm, vpnm, scc, ssc, vpc, ssr, sst, pt, vpt, pob, psa, autocorr1, file = "datos.RData")
+save(apm, apnm, pm, pnm, vpm, vpnm, scc, ssc, vpc, ssr, sst, pt, vpt, pob, psa, autocorr1, 
+     datos_maderable, datos_ganadera, datos_agricola, datos_pob, file = "datos.RData")
 
 save(autocorr1, file = "autocorrelaciones.RData")
 
 # REGRESAR AL ENTORNO GENERAL LOCAL
-setwd("/media/iskar/archivos/MAPAS/mapasR/dpsir_autocorrelation_oaxaca_forest/data")
+setwd("/media/iskar/archivos/MAPAS/mapasR/dpsir_autocorrelation_oaxaca_forest")

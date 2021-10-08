@@ -14,4 +14,4 @@ Código que lee todos los datos de github y genera archivos RData para el mapa i
 
 Son archivos de la app. 
 
-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
+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
