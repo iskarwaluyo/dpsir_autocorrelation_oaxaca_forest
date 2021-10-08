@@ -42,6 +42,9 @@ mun_mapa_agricola@data[is.na(mun_mapa_agricola@data)] <- 0
 mun_mapa_ganadera@data[is.na(mun_mapa_ganadera@data)] <- 0
 mun_mapa_pob@data[is.na(mun_mapa_pob@data)] <- 0
 mun_mapa_psa$sum[is.na(mun_mapa_psa$sum)] <- 0
+mun_mapa_vegprimaria$PCT_PRIMARIA[is.na(mun_mapa_vegprimaria$PCT_PRIMARIA)] <- 0
+mun_mapa_vegsecundaria$PCT_SECUNDARIA[is.na(mun_mapa_vegsecundaria$PCT_SECUNDARIA)] <- 0
+
 
 mun_mapa_maderable$APM_2016 <- as.numeric(mun_mapa_maderable$APM_2016)
 mun_mapa_maderable$APNM_2016 <- as.numeric(mun_mapa_maderable$APNM_2016)
@@ -77,8 +80,8 @@ pal_pct <- colorBin(palette = "Oranges", bins = bins_pct)
 # STATE
 # LAND USE COVERAGE
 
-bins_primveg <- c(0, 500, 1000, 2000, 4000, 8000, 16000, 32000, Inf)
-pal_primveg <- colorBin(palette= "Greens", domain = mun_mapa_vegprimaria$AREA_2, bins = bins_primveg)
+bins_primveg <- bins_pct
+pal_primveg <- colorBin(palette= "Greens", domain = mun_mapa_vegprimaria$PCT_PRIMARIA, bins = bins_primveg)
 
 # IMPACT
 # APROVECHAMIENTO MADERABLE Y NO MADERABLE
@@ -92,7 +95,7 @@ pal_apnm <- colorBin(palette= "Blues", domain = mun_mapa_maderable$APM_2016, bin
 # RESPONSE
 
 bins_psa <- c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
-pal_psa <- colorBin(palette = "Greens", domain = mun_mapa_psa$PCT_PSA, bins = bins_psa)
+pal_psa <- colorBin(palette = "Purples", domain = mun_mapa_psa$PCT_PSA, bins = bins_psa)
 
 # AUTOCORRELACION
 

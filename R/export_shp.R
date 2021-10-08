@@ -14,3 +14,8 @@ writeOGR(ac_mapa_psa, dsn = '.', layer = 'mapa_psa', driver = "ESRI Shapefile")
 setwd("/media/iskar/archivos/MAPAS/mapasR/dpsir_autocorrelation_oaxaca_forest/data/raw_data/shape_ouput/pob/")
 writeOGR(ac_mapa_pob, dsn = '.', layer = 'mapa_pob', driver = "ESRI Shapefile")
 
+setwd("/media/iskar/archivos/MAPAS/mapasR/dpsir_autocorrelation_oaxaca_forest/data/raw_data/shape_ouput/state/")
+writeOGR(mun_mapa_vegprimaria, dsn = '.', layer = 'mapa_veg_primaria', driver = "ESRI Shapefile")
+
+setwd("/media/iskar/archivos/MAPAS/mapasR/dpsir_autocorrelation_oaxaca_forest/data/raw_data/shape_ouput/state/")
+writeOGR(mun_mapa_vegsecundaria, dsn = '.', layer = 'mapa_veg_secundaria', driver = "ESRI Shapefile")

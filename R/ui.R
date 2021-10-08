@@ -14,7 +14,7 @@ bootstrapPage(theme = shinytheme("flatly"),
                                                        width: 10px;
                                                        height: 10px;
                                                        }"),
-                                            leafletOutput("mapa_drivers", width = "100%", height = 800),
+                                            leafletOutput("mapa_drivers", width = "100%", height = "100%"),
                                           
                                             absolutePanel(top = 10, right = 10,
                                                           checkboxInput("leyenda", "Mostrar leyenda", TRUE),

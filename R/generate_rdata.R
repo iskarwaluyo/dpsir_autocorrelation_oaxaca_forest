@@ -126,6 +126,21 @@ mun_mapa_vegprimaria <- mun_mapa_usv[grep('^BOSQUE|^SELVA|MANGLAR|TULAR',
 mun_mapa_vegsecundaria <- mun_mapa_usv[grep('^VEGETACIÓN|CHAPARRAL|SABANOIDE', 
                                               mun_mapa_usv@data$DESCRIPCIO,),]
 
+sum_vegprimria <- ddply (mun_mapa_vegprimaria@data, "CVE_MUN", 
+                           summarise, VEG_PRIM_SUM = sum(AREA_2))
+
+sum_vegsecundaria <- ddply (mun_mapa_vegsecundaria@data, "CVE_MUN", 
+                         summarise, VEG_SECA_SUM = sum(AREA_2))
+
+mun_mapa_vegprimaria <- merge(mun_mapa, sum_vegprimria, by = "CVE_MUN", all.y=TRUE, all.x = TRUE)
+
+mun_mapa_vegsecundaria <- merge(mun_mapa, sum_vegsecundaria, by = "CVE_MUN", all.y=TRUE, all.x = TRUE)
+
+mun_mapa_vegprimaria$PCT_PRIMARIA <- 100*as.numeric(mun_mapa_vegprimaria$AREA)/mun_mapa_vegprimaria$VEG_PRIM_SUM
+
+mun_mapa_vegsecundaria$PCT_SECUNDARIA <- 100*as.numeric(mun_mapa_vegsecundaria$AREA)/mun_mapa_vegsecundaria$VEG_SECA_SUM
+
+
 
 # DATOS DE AUTOCORRELACIONES
 # FUENTE: ELABORACIÓN PROPIA CON SOFTWARE GEODA

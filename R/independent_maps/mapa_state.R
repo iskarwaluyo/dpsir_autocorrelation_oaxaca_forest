@@ -26,17 +26,17 @@ m2 <- m2 %>%  addPolygons(data = mun_mapa_vegprimaria, stroke = FALSE, smoothFac
                             fillOpacity = 0.1,
                             dashArray = "2",
                             bringToFront = TRUE),
-                          group = "VEGETACIÓN PRIMARIA",
+                          group = "VEGETACIÓN",
                           labelOptions = labelOptions(
                             style = list("font-weight" = "normal", padding = "3px 8px"),
                             textsize = "15px",
                             direction = "auto"),
                           popup = ~pop_state_primaria)
 
-m2 <- m2 %>%  addPolygons(data = mun_mapa_vegprimaria, stroke = FALSE, smoothFactor = 0.3,
+m2 <- m2 %>%  addPolygons(data = mun_mapa_vegprimaria, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
                           fillOpacity = .7,
-                          fillColor = ~pal_psa(PCT_PRIMARIA),
+                          fillColor = ~pal_primveg(PCT_PRIMARIA),
                           opacity = .3,
                           weight = 1,
                           color = "#4D4D4D",
@@ -54,10 +54,10 @@ m2 <- m2 %>%  addPolygons(data = mun_mapa_vegprimaria, stroke = FALSE, smoothFac
                             direction = "auto"),
                           popup = ~pop_state_primaria)
 
-m2 <- m2 %>%  addPolygons(data = mun_mapa_vegsecundaria, stroke = FALSE, smoothFactor = 0.3,
+m2 <- m2 %>%  addPolygons(data = mun_mapa_vegsecundaria, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "B"),
                           fillOpacity = .7,
-                          fillColor = ~pal_psa(PCT_SECUNDARIA),
+                          fillColor = ~pal_primveg(PCT_SECUNDARIA),
                           opacity = .3,
                           weight = 1,
                           color = "#4D4D4D",
@@ -83,3 +83,7 @@ m2 <- m2 %>% addLayersControl(
 )
 
 m2
+
+addLegend(m2, "topleft", group = "VEGETACIÓN PRIMARIA", pal = pal_primveg, values = mun_mapa_vegprimaria$PCT_PRIMARIA, opacity = 1.0, title = "Total area  <br/> with primary vegetation (%)")
+addLegend(m2, "topleft", group = "VEGETACIÓN SECUNDARIA", pal = pal_primveg, values = mun_mapa_vegprimaria$PCT_PRIMARIA, opacity = 1.0, title = "Total area  <br/> with secondary vegetation (%)")
+
