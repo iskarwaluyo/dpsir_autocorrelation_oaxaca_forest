@@ -45,7 +45,6 @@ mun_mapa_psa$sum[is.na(mun_mapa_psa$sum)] <- 0
 mun_mapa_vegprimaria$PCT_PRIMARIA[is.na(mun_mapa_vegprimaria$PCT_PRIMARIA)] <- 0
 mun_mapa_vegsecundaria$PCT_SECUNDARIA[is.na(mun_mapa_vegsecundaria$PCT_SECUNDARIA)] <- 0
 
-
 mun_mapa_maderable$APM_2016 <- as.numeric(mun_mapa_maderable$APM_2016)
 mun_mapa_maderable$APNM_2016 <- as.numeric(mun_mapa_maderable$APNM_2016)
 

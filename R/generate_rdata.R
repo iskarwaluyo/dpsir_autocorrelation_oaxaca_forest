@@ -110,12 +110,12 @@ psa <- mun_mapa_psa@data
 # CONVERTIR TODOS LOS ENCABEZADOS A MAYUSCULAS
 colnames(psa) <- toupper(colnames(psa)) 
 
-psa_x <- ddply(psa, .(CVE_MUN), summarise, SUMA_PSA = sum(SUP_MUN_ZE))
+#psa_x <- ddply(psa, .(CVE_MUN), summarise, SUMA_PSA = sum(SUP_MUN_ZE))
 
-mun_mapa_psa <- merge(mun_mapa, psa_x, by.x = "CVEGEO", by.y = "CVE_MUN", all.x = TRUE, all.y = TRUE)
-mun_mapa_psa@data[is.na(mun_mapa_psa@data)] <- 0
+#mun_mapa_psa <- merge(mun_mapa, psa_x, by.x = "CVEGEO", by.y = "CVE_MUN", all.x = TRUE, all.y = TRUE)
+#mun_mapa_psa@data[is.na(mun_mapa_psa@data)] <- 0
 
-mun_mapa_psa$PCT_PSA <- 100*(mun_mapa_psa$SUMA_PSA/as.numeric(mun_mapa_psa$AREA))
+#mun_mapa_psa$PCT_PSA <- 100*(mun_mapa_psa$SUMA_PSA/as.numeric(mun_mapa_psa$AREA))
 
 # STATE
 
@@ -159,6 +159,7 @@ save(mun_mapa, mun_mapa_maderable, mun_mapa_agricola, mun_mapa_ganadera, mun_map
 
 save(apm, apnm, pm, pnm, vpm, vpnm, scc, ssc, vpc, ssr, sst, pt, vpt, pob, psa, autocorr1, file = "datos.RData")
 
+save(autocorr1, file = "autocorrelaciones.RData")
 
 # REGRESAR AL ENTORNO GENERAL LOCAL
 setwd("/media/iskar/archivos/MAPAS/mapasR/dpsir_autocorrelation_oaxaca_forest/data")
