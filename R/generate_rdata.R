@@ -17,6 +17,10 @@ agricola_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir
 ganadera_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/mun_auto_ganadera.geojson")
 pob_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/mun_auto_pob.geojson")
 maderable_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/mun_auto_maderable.geojson")
+vegprim_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/mun_auto_vegpri.geojson")
+vegsecu_autocor <- readOGR("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/mun_auto_vegsec.geojson")
+
+
 
 # LECTURA DE GEOJSON COMO UN SF (SIMPLE FEATURES)
 mun_mapa_sf <- st_read("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/raw_data/geojson/oax_mun.geojson")
@@ -155,7 +159,8 @@ setwd("/media/iskar/archivos/MAPAS/mapasR/dpsir_autocorrelation_oaxaca_forest/da
 
 save(mun_mapa, mun_mapa_maderable, mun_mapa_agricola, mun_mapa_ganadera, mun_mapa_autocorr, 
      mun_mapa_pob, mun_mapa_psa, mun_mapa_regiones, psa_autocor, agricola_autocor, maderable_autocor,
-     ganadera_autocor, pob_autocor, mun_mapa_vegprimaria, mun_mapa_vegsecundaria, file = "carto.RData")
+     ganadera_autocor, pob_autocor, mun_mapa_vegprimaria, mun_mapa_vegsecundaria, 
+     vegprim_autocor, vegsecu_autocor, file = "carto.RData")
 
 save(apm, apnm, pm, pnm, vpm, vpnm, scc, ssc, vpc, ssr, sst, pt, vpt, pob, psa, autocorr1, 
      datos_maderable, datos_ganadera, datos_agricola, datos_pob, file = "datos.RData")
