@@ -15,6 +15,6 @@ Not all files are useable at this point. The workable files are in R/independent
 
 ## Future developments
 
-The maps will be able deployed through Shiny Apps in the near future. 
-
+1. The maps will be able deployed through Shiny Apps in the near future. 
+2. Output maps. Maps will be exported into shapefiles and available for download. Test versions of shapefiles are available in the data/raw_data/shape_ouput/ directory
 
