@@ -1,4 +1,4 @@
-m7 <- leaflet(mun_mapa) %>%
+m9 <- leaflet(mun_mapa) %>%
   addMapPane("A", zIndex = 490) %>% #
   addMapPane("B", zIndex = 480) %>% # 
   addMapPane("C", zIndex = 470) %>% # 
@@ -13,7 +13,7 @@ m7 <- leaflet(mun_mapa) %>%
               label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ",")))
 
 
-m7 <- m7 %>%  addPolygons(data = vegprim_autocor, stroke = TRUE, smoothFactor = 0.3,
+m9 <- m9 %>%  addPolygons(data = vegprim_autocor, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
                           fillOpacity = 1,
                           fillColor = ~pal_autocorr(CL_PRI),
@@ -33,7 +33,7 @@ m7 <- m7 %>%  addPolygons(data = vegprim_autocor, stroke = TRUE, smoothFactor = 
                             textsize = "15px",
                             direction = "auto"))
 
-m7 <- m7 %>%  addPolygons(data = vegsecu_autocor, stroke = TRUE, smoothFactor = 0.3,
+m9 <- m9 %>%  addPolygons(data = vegsecu_autocor, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
                           fillOpacity = 1,
                           fillColor = ~pal_autocorr(CL_PCTSEC),
@@ -55,13 +55,13 @@ m7 <- m7 %>%  addPolygons(data = vegsecu_autocor, stroke = TRUE, smoothFactor = 
 
 
 # CONTROL DE CAPAS
-m7 <- m7 %>% addLayersControl(
+m9 <- m9 %>% addLayersControl(
   baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-  overlayGroups = c("AUTCORR VEGETACION SECUNDARIA", "AUTCORR VEGETACION SECUNDARIA"),
+  overlayGroups = c("AUTCORR VEGETACION PRIMARIA", "AUTCORR VEGETACION SECUNDARIA"),
   options = layersControlOptions(collapsed = FALSE)
 )
 
-m7
+m9
 
-addLegend(m7, "topleft", group = "AUTCORR VEGETACION SECUNDARIA", pal = pal_autocorr, values = agricola_autocor$VPM_LISA_CL, opacity = 1.0, title = "Pressure Autocorrelation")
+addLegend(m9, "topleft", group = "AUTCORR VEGETACION SECUNDARIA", pal = pal_autocorr, values = c(1:4), opacity = 1.0, title = "State Autocorrelation")
 
