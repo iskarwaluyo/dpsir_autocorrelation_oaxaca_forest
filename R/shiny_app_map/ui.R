@@ -83,10 +83,10 @@ bootstrapPage(theme = shinytheme("flatly"),
                          
                          ),
                                
-                         navbarMenu("Proyecto",
-
-                                             includeHTML("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/html/resumen.html")
-
+                            tabPanel("Resumen",
+                                    includeHTML("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/html/resumen.html")
+                                )
+                         
 
               )
                         
