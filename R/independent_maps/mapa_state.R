@@ -12,27 +12,6 @@ m2 <- leaflet(mun_mapa) %>%
               fillColor = ~pal(as.numeric(NOMGEO)),
               label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ","))) 
 
-m2 <- m2 %>%  addPolygons(data = mun_mapa_vegprimaria, stroke = FALSE, smoothFactor = 0.3,
-                          options = pathOptions(pane = "A"),
-                          fillOpacity = .7,
-                          fillColor = ~pal_primveg(AREA_2),
-                          opacity = .3,
-                          weight = 1,
-                          color = "#4D4D4D",
-                          dashArray = "2",
-                          highlight = highlightOptions(
-                            weight = 1,
-                            color = "#4D4D4D",
-                            fillOpacity = 0.1,
-                            dashArray = "2",
-                            bringToFront = TRUE),
-                          group = "VEGETACIÓN",
-                          labelOptions = labelOptions(
-                            style = list("font-weight" = "normal", padding = "3px 8px"),
-                            textsize = "15px",
-                            direction = "auto"),
-                          popup = ~pop_state_primaria)
-
 m2 <- m2 %>%  addPolygons(data = mun_mapa_vegprimaria, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
                           fillOpacity = .7,
@@ -75,10 +54,52 @@ m2 <- m2 %>%  addPolygons(data = mun_mapa_vegsecundaria, stroke = TRUE, smoothFa
                             direction = "auto"),
                           popup = ~pop_state_primaria)
 
+
+m2 <- m2 %>%  addPolygons(data = vegprim_autocor, stroke = TRUE, smoothFactor = 0.3,
+                          options = pathOptions(pane = "A"),
+                          fillOpacity = 1,
+                          fillColor = ~pal_autocorr(CL_PRI),
+                          opacity = .3,
+                          weight = 1,
+                          color = "#4D4D4D",
+                          dashArray = "2",
+                          highlight = highlightOptions(
+                            weight = 1,
+                            color = "#4D4D4D",
+                            fillOpacity = 0.1,
+                            dashArray = "2",
+                            bringToFront = TRUE),
+                          group = "AUTCORR VEGETACION PRIMARIA",
+                          labelOptions = labelOptions(
+                            style = list("font-weight" = "normal", padding = "3px 8px"),
+                            textsize = "15px",
+                            direction = "auto"))
+
+m2 <- m2 %>%  addPolygons(data = vegsecu_autocor, stroke = TRUE, smoothFactor = 0.3,
+                          options = pathOptions(pane = "A"),
+                          fillOpacity = 1,
+                          fillColor = ~pal_autocorr(CL_PCTSEC),
+                          opacity = .3,
+                          weight = 1,
+                          color = "#4D4D4D",
+                          dashArray = "2",
+                          highlight = highlightOptions(
+                            weight = 1,
+                            color = "#4D4D4D",
+                            fillOpacity = 0.1,
+                            dashArray = "2",
+                            bringToFront = TRUE),
+                          group = "AUTCORR VEGETACION SECUNDARIA",
+                          labelOptions = labelOptions(
+                            style = list("font-weight" = "normal", padding = "3px 8px"),
+                            textsize = "15px",
+                            direction = "auto"))
+
+
 # CONTROL DE CAPAS
 m2 <- m2 %>% addLayersControl(
   baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-  overlayGroups = c("VEGETACIÓN PRIMARIA", "VEGETACIÓN SECUNDARIA"),
+  overlayGroups = c("VEGETACIÓN PRIMARIA", "VEGETACIÓN SECUNDARIA", "AUTCORR VEGETACION PRIMARIA", "AUTCORR VEGETACION SECUNDARIA"),
   options = layersControlOptions(collapsed = FALSE)
 )
 

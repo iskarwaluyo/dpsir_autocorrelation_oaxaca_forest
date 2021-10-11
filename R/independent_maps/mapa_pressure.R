@@ -33,48 +33,6 @@ m1 <- m1 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor 
                             direction = "auto"),
                           popup = ~pop_pressure_agricola)
 
-m1 <- m1 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
-                          options = pathOptions(pane = "A"),
-                          fillOpacity = .7,
-                          fillColor = ~pal_pct(100*(as.numeric(SST_2016)/as.numeric(AREA))),
-                          opacity = .3,
-                          weight = 1,
-                          color = "#4D4D4D",
-                          dashArray = "2",
-                          highlight = highlightOptions(
-                            weight = 1,
-                            color = "#4D4D4D",
-                            fillOpacity = 0.1,
-                            dashArray = "2",
-                            bringToFront = TRUE),
-                          group = "SUPERFICIE TEMPORAL",
-                          labelOptions = labelOptions(
-                            style = list("font-weight" = "normal", padding = "3px 8px"),
-                            textsize = "15px",
-                            direction = "auto"),
-                          popup = ~pop_pressure_agricola)
-
-m1 <- m1 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
-                          options = pathOptions(pane = "A"),
-                          fillOpacity = .7,
-                          fillColor = ~pal_pct(100*(as.numeric(SSR_2016)/as.numeric(AREA))),
-                          opacity = .3,
-                          weight = 1,
-                          color = "#4D4D4D",
-                          dashArray = "2",
-                          highlight = highlightOptions(
-                            weight = 1,
-                            color = "#4D4D4D",
-                            fillOpacity = 0.1,
-                            dashArray = "2",
-                            bringToFront = TRUE),
-                          group = "SUPERFICIE RIEGO",
-                          labelOptions = labelOptions(
-                            style = list("font-weight" = "normal", padding = "3px 8px"),
-                            textsize = "15px",
-                            direction = "auto"),
-                          popup = ~pop_pressure_agricola)
-
 m1 <- m1 %>%  addPolygons(data = agricola_autocor, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "D"),
                           fillOpacity = 1,
@@ -99,7 +57,7 @@ m1 <- m1 %>%  addPolygons(data = agricola_autocor, stroke = TRUE, smoothFactor =
 # CONTROL DE CAPAS
 m1 <- m1 %>% addLayersControl(
   baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-  overlayGroups = c("SUPERFICIE SEMBRADA", "SUPERFICIE TEMPORAL", "SUPERFICIE RIEGO", "AUTOCORRELACIÓN SUPERFICIE SEMBRADA"),
+  overlayGroups = c("SUPERFICIE SEMBRADA", "AUTOCORRELACIÓN SUPERFICIE SEMBRADA"),
   options = layersControlOptions(collapsed = FALSE)
 )
 
