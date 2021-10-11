@@ -58,22 +58,8 @@ function(input, output, session) {
   
   # GENERAR MAPA 1
   output$mapa_drivers <- renderLeaflet({
-    
-    m0 <- leaflet(mun_mapa) %>%
-      addMapPane("A", zIndex = 490) %>% #
-      addMapPane("B", zIndex = 480) %>% # 
-      addMapPane("C", zIndex = 470) %>% # 
-      addMapPane("D", zIndex = 460) %>% # 
-      addMapPane("E", zIndex = 450) %>% # 
-      
-      
-      addTiles() %>%
-      addTiles(group = "Open Street Map") %>%
-      addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
-      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>%
-      addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = .2,
-                  label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ","))) 
-    
+    # PRELODADE MAP
+
     
     m0 <- m0 %>%  addPolygons(data = mun_mapa_maderable, stroke = TRUE, smoothFactor = 0.3,
                               options = pathOptions(pane = "A"),
@@ -116,7 +102,7 @@ function(input, output, session) {
                                 textsize = "15px",
                                 direction = "auto"),
                               popup = ~pop_driver_no_maderable)
-
+    
     m0 <- m0 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
                               options = pathOptions(pane = "C"),
                               fillOpacity = 1,
@@ -137,50 +123,7 @@ function(input, output, session) {
                                 textsize = "15px",
                                 direction = "auto"),
                               popup = ~pop_driver_agricola)
-    
-    m0 <- m0 %>%  addPolygons(data = mun_mapa_ganadera, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "D"),
-                              fillOpacity = 1,
-                              fillColor = ~pal_vpt(VPT_2016),
-                              opacity = .3,
-                              weight = 1,
-                              color = "#4D4D4D",
-                              dashArray = "2",
-                              highlight = highlightOptions(
-                                weight = 1,
-                                color = "#4D4D4D",
-                                fillOpacity = 0.1,
-                                dashArray = "2",
-                                bringToFront = TRUE),
-                              group = "GANADERA",
-                              labelOptions = labelOptions(
-                                style = list("font-weight" = "normal", padding = "3px 8px"),
-                                textsize = "15px",
-                                direction = "auto"),
-                              popup = ~pop_driver_ganadera)
-    
-    m0 <- m0 %>%  addPolygons(data = mun_mapa_pob, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "E"),
-                              fillOpacity = 1,
-                              fillColor = ~pal_pob(POB_2015),
-                              opacity = .3,
-                              weight = 1,
-                              color = "#4D4D4D",
-                              dashArray = "2",
-                              highlight = highlightOptions(
-                                weight = 1,
-                                color = "#4D4D4D",
-                                fillOpacity = 0.1,
-                                dashArray = "2",
-                                bringToFront = TRUE),
-                              group = "POBLACIÓN",
-                              labelOptions = labelOptions(
-                                style = list("font-weight" = "normal", padding = "3px 8px"),
-                                textsize = "15px",
-                                direction = "auto"),
-                              popup = ~pop_driver_poblacion)
 
-    
     # CONTROL DE CAPAS
     m0 <- m0 %>% addLayersControl(
       baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
@@ -188,10 +131,7 @@ function(input, output, session) {
       options = layersControlOptions(collapsed = FALSE)
     )
     
-    
     m0
-
-
     
   })
   
