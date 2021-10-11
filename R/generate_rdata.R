@@ -114,12 +114,12 @@ psa <- mun_mapa_psa@data
 # CONVERTIR TODOS LOS ENCABEZADOS A MAYUSCULAS
 colnames(psa) <- toupper(colnames(psa)) 
 
-#psa_x <- ddply(psa, .(CVE_MUN), summarise, SUMA_PSA = sum(SUP_MUN_ZE))
+psa_x <- ddply(psa, .(CVE_MUN), summarise, SUMA_PSA = sum(SUP_MUN_ZE))
 
-#mun_mapa_psa <- merge(mun_mapa, psa_x, by.x = "CVEGEO", by.y = "CVE_MUN", all.x = TRUE, all.y = TRUE)
-#mun_mapa_psa@data[is.na(mun_mapa_psa@data)] <- 0
+mun_mapa_psa <- merge(mun_mapa, psa_x, by.x = "CVEGEO", by.y = "CVE_MUN", all.x = TRUE, all.y = TRUE)
+mun_mapa_psa@data[is.na(mun_mapa_psa@data)] <- 0
 
-#mun_mapa_psa$PCT_PSA <- 100*(mun_mapa_psa$SUMA_PSA/as.numeric(mun_mapa_psa$AREA))
+mun_mapa_psa$PCT_PSA <- 100*(mun_mapa_psa$SUMA_PSA/as.numeric(mun_mapa_psa$AREA))
 
 # STATE
 
@@ -161,6 +161,8 @@ save(mun_mapa, mun_mapa_maderable, mun_mapa_agricola, mun_mapa_ganadera, mun_map
      mun_mapa_pob, mun_mapa_psa, mun_mapa_regiones, psa_autocor, agricola_autocor, maderable_autocor,
      ganadera_autocor, pob_autocor, mun_mapa_vegprimaria, mun_mapa_vegsecundaria, 
      vegprim_autocor, vegsecu_autocor, file = "carto.RData")
+
+save(m0, m1, m2, m3, m4, file = "thematic_maps.RData")
 
 save(apm, apnm, pm, pnm, vpm, vpnm, scc, ssc, vpc, ssr, sst, pt, vpt, pob, psa, autocorr1, 
      datos_maderable, datos_ganadera, datos_agricola, datos_pob, file = "datos.RData")

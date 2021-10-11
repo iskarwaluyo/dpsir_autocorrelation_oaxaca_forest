@@ -104,26 +104,8 @@ pal_autocorr <- colorFactor(c("#e4e4e4", "#ff2500", "#0432ff", "#a6aaff", "#ffa8
 
 pal_reg <- colorFactor("Set1", mun_mapa_regiones$REGION)
 
-#pal2 <- colorNumeric(
- # palette = "Blues",
- # domain = countries$gdp_md_est)
-
 pal <- colorFactor(c("#e4e4e4", "#ff2500", "#0432ff", "#a6aaff", "#ffa8a6"), 0:4)
 palb <- colorFactor( palette="Spectral", 1:7)
-
-
-#pal_0b <- colorBin( palette="Set1", domain = autocorr$LISA_CLdef, bins = bins_autocorr)
-#pal_0c <- colorBin( palette="heat", domain = autocorr$LISA_CLdeg, bins = bins_autocorr)
-
-#pal_1 <- colorBin( palette="magma", domain = as.numeric(as.character(mun_mapa_ma@data$X2016)), bins = bins_superficie)
-#pal_2 <- colorNumeric( palette= "YlGn", domain=mun_mapa@data$PCT_FORESTAL, na.color="transparent")
-#pal_3 <- colorNumeric( palette="YlOrBr", domain=mun_mapa@data$PCT_AGRICOLA, na.color="transparent")
-#pal_4 <- colorNumeric( palette="YlOrRd", domain=mun_mapa@data$PCT_PECUARIO, na.color="transparent")
-
-# k-means only works with numerical variables,
-# so don't give the user the option to select
-# a categorical variable
-#vars <- colnames(matriz_correlacion)
 
 # POP-UPS MADERABLE
 pop_driver_maderable <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
