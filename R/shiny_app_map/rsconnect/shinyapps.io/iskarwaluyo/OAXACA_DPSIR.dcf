@@ -5,9 +5,9 @@ account: iskarwaluyo
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4847943
-bundleId: 5128780
+bundleId: 5128805
 url: https://iskarwaluyo.shinyapps.io/OAXACA_DPSIR/
-when: 1633996917.96104
-lastSyncTime: 1633996917.96108
+when: 1633997505.62911
+lastSyncTime: 1633997505.62915
 asMultiple: FALSE
 asStatic: FALSE
