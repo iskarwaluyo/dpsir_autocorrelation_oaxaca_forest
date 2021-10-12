@@ -489,9 +489,9 @@ function(input, output, session) {
     )
     
     m2 <- m2 %>% hideGroup("VEGETACIÓN PRIMARIA")
-    m2 <- m2 %>% hideGroup("AUTOCORR VEGETACIÓN PRIMARIA")
+    m2 <- m2 %>% hideGroup("AUTOCORR VEGETACION PRIMARIA")
     m2 <- m2 %>% hideGroup("VEGETACIÓN SECUNDARIA")
-    m2 <- m2 %>% hideGroup("AUTOCORR VEGETACIÓN SECUNDARIA")
+    m2 <- m2 %>% hideGroup("AUTOCORR VEGETACION SECUNDARIA")
     
   })
   
