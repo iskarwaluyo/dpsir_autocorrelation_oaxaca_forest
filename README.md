@@ -1,4 +1,4 @@
-# Spatial analysis of forest socio-ecological systemin Oaxaca, Mexico based on the DPSIRframework
+# Spatial analysis of forest socio-ecological system in Oaxaca, Mexico based on the DPSIRframework
 
 ## About
 
