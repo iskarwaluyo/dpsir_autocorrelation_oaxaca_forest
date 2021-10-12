@@ -64,6 +64,5 @@ m1 <- m1 %>% addLayersControl(
 m1
 
 addLegend(m1, "topleft", group = "SUPERFICIE SEMBRADA", pal = pal_pct, values = mun_mapa_agricola$SSCPCT_2016, opacity = 1.0, title = "Area with agricultural activity <br/> (%)")
-
 addLegend(m1, "topleft", group = "AUTOCORRELACIÓN SUPERFICIE SEMBRADA", pal = pal_autocorr, values = c(0:4), opacity = 1.0, title = "Area with agricultural activity autocorrelation")
 

@@ -56,7 +56,7 @@ function(input, output, session) {
     )
   })
   
-  # GENERAR MAPA DRIVERS
+  # GENERAR MAPA 1
   output$mapa_drivers <- renderLeaflet({
     
     m0 <- leaflet(mun_mapa) %>%
@@ -66,14 +66,16 @@ function(input, output, session) {
       addMapPane("C", zIndex = 470) %>% # 
       addMapPane("D", zIndex = 460) %>% # 
       addMapPane("E", zIndex = 450) %>% # 
-      addMapPane("F", zIndex = 440) %>% # 
-      addMapPane("G", zIndex = 430) %>% # 
+      
       
       addTiles() %>%
       addTiles(group = "Open Street Map") %>%
       addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
-      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") 
-
+      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>%
+      addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = .2,
+                  fillColor = ~pal(as.numeric(CVE_MUN)),
+                  label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ","))) 
+    
     m0 <- m0 %>%  addPolygons(data = mun_mapa_maderable, stroke = TRUE, smoothFactor = 0.3,
                               options = pathOptions(pane = "A"),
                               fillOpacity = .7,
@@ -96,7 +98,7 @@ function(input, output, session) {
                               popup = ~pop_driver_maderable)
     
     m0 <- m0 %>%  addPolygons(data = mun_mapa_maderable, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "A"),
+                              options = pathOptions(pane = "B"),
                               fillOpacity = .7,
                               fillColor = ~pal_vpnm(VPNM_2016),
                               opacity = .3,
@@ -117,7 +119,7 @@ function(input, output, session) {
                               popup = ~pop_driver_no_maderable)
     
     m0 <- m0 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "B"),
+                              options = pathOptions(pane = "C"),
                               fillOpacity = .7,
                               fillColor = ~pal_vpc(VPC_2016),
                               opacity = .3,
@@ -137,50 +139,8 @@ function(input, output, session) {
                                 direction = "auto"),
                               popup = ~pop_driver_agricola)
     
-    m0 <- m0 %>%  addPolygons(data = mun_mapa_ganadera, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "C"),
-                              fillOpacity = .7,
-                              fillColor = ~pal_vpc(VPT_2016),
-                              opacity = .3,
-                              weight = 1,
-                              color = "#4D4D4D",
-                              dashArray = "2",
-                              highlight = highlightOptions(
-                                weight = 1,
-                                color = "#4D4D4D",
-                                fillOpacity = 0.1,
-                                dashArray = "2",
-                                bringToFront = TRUE),
-                              group = "GANADERA",
-                              labelOptions = labelOptions(
-                                style = list("font-weight" = "normal", padding = "3px 8px"),
-                                textsize = "15px",
-                                direction = "auto"),
-                              popup = ~pop_driver_ganadera)
-    
-    m0 <- m0 %>%  addPolygons(data = mun_mapa_pob, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "C"),
-                              fillOpacity = .7,
-                              fillColor = ~pal_vpc(POB_2015),
-                              opacity = .3,
-                              weight = 1,
-                              color = "#4D4D4D",
-                              dashArray = "2",
-                              highlight = highlightOptions(
-                                weight = 1,
-                                color = "#4D4D4D",
-                                fillOpacity = 0.1,
-                                dashArray = "2",
-                                bringToFront = TRUE),
-                              group = "POBLACIÓN",
-                              labelOptions = labelOptions(
-                                style = list("font-weight" = "normal", padding = "3px 8px"),
-                                textsize = "15px",
-                                direction = "auto"),
-                              popup = ~pop_driver_poblacion)
-    
     m0 <- m0 %>%  addPolygons(data = maderable_autocor, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "C"),
+                              options = pathOptions(pane = "D"),
                               fillOpacity = 1,
                               fillColor = ~pal_autocorr(CL_VPM),
                               opacity = .3,
@@ -222,7 +182,7 @@ function(input, output, session) {
                               popup = ~pop_maderable_autocor)
     
     m0 <- m0 %>%  addPolygons(data = agricola_autocor, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "E"),
+                              options = pathOptions(pane = "D"),
                               fillOpacity = 1,
                               fillColor = ~pal_autocorr(CL_VPV2016),
                               opacity = .3,
@@ -243,7 +203,7 @@ function(input, output, session) {
                               popup = ~pop_agricultura_autocor)
     
     m0 <- m0 %>%  addPolygons(data = ganadera_autocor, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "F"),
+                              options = pathOptions(pane = "D"),
                               fillOpacity = 1,
                               fillColor = ~pal_autocorr(CL_VPT2016),
                               opacity = .3,
@@ -256,7 +216,7 @@ function(input, output, session) {
                                 fillOpacity = 0.1,
                                 dashArray = "2",
                                 bringToFront = TRUE),
-                              group = "AUTOCORRELACIÓN GANADERA",
+                              group = "AUTOCORRELACIÓN POBLACIÓN",
                               labelOptions = labelOptions(
                                 style = list("font-weight" = "normal", padding = "3px 8px"),
                                 textsize = "15px",
@@ -264,7 +224,7 @@ function(input, output, session) {
                               popup = ~pop_poblacion_autocor)
     
     m0 <- m0 %>%  addPolygons(data = pob_autocor, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "G"),
+                              options = pathOptions(pane = "D"),
                               fillOpacity = 1,
                               fillColor = ~pal_autocorr(CL_POB2015),
                               opacity = .3,
@@ -283,40 +243,29 @@ function(input, output, session) {
                                 textsize = "15px",
                                 direction = "auto"),
                               popup = ~pop_poblacion_autocor)
-    
+
     # CONTROL DE CAPAS
     m0 <- m0 %>% addLayersControl(
       baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
       overlayGroups = c("MADERABLE", "NO MADERABLE", "AGRÍCOLA", "GANADERA", "POBLACIÓN", "REGIONES",
                         "AUTOCORRELACIÓN MADERABLE", "AUTOCORRELACIÓN NO MADERABLE", "AUTOCORRELACIÓN AGRÍCOLA",
                         "AUTOCORRELACIÓN GANADERA", "AUTOCORRELACIÓN POBLACIÓN"),
-      options = layersControlOptions(collapsed = TRUE)
-      
-      
+      options = layersControlOptions(collapsed = FALSE)
     )
-    m0 <- m0 %>% hideGroup("MADERABLE")
-    m0 <- m0 %>% hideGroup("NO MADERABLE")
-    m0 <- m0 %>% hideGroup("AGRÍCOLA")
-    m0 <- m0 %>% hideGroup("GANADERA")
-    m0 <- m0 %>% hideGroup("POBLACIÓN")
-    m0 <- m0 %>% hideGroup("REGIONES")
-    m0 <- m0 %>% hideGroup("AUTOCORRELACIÓN MADERABLE")
-    m0 <- m0 %>% hideGroup("AUTOCORRELACIÓN NO MADERABLE")
-    m0 <- m0 %>% hideGroup("AUTOCORRELACIÓN AGRÍCOLA")
-    m0 <- m0 %>% hideGroup("AUTOCORRELACIÓN GANADERA")
-    m0 <- m0 %>% hideGroup("AUTOCORRELACIÓN POBLACIÓN")
+    
+    m0
     
   })
   
   
   # GENERAR MAPA PRESSURE
-  
+
   output$mapa_pressure <- renderLeaflet({
     
     m1 <- leaflet(mun_mapa) %>%
       addMapPane("A", zIndex = 490) %>% #
       addMapPane("B", zIndex = 480) %>% # 
-      
+
       
       
       addTiles() %>%
@@ -376,8 +325,7 @@ function(input, output, session) {
       options = layersControlOptions(collapsed = FALSE)
     )
     
-    m1 <- m1 %>% hideGroup("SUPERFICE SEMBRADA")
-    m1 <- m1 %>% hideGroup("AUTOCORRELACIÓN SUPERFICE SEMBRADA")
+    m1
     
   })
   
@@ -488,14 +436,11 @@ function(input, output, session) {
       options = layersControlOptions(collapsed = FALSE)
     )
     
-    m2 <- m2 %>% hideGroup("VEGETACIÓN PRIMARIA")
-    m2 <- m2 %>% hideGroup("AUTOCORR VEGETACIÓN PRIMARIA")
-    m2 <- m2 %>% hideGroup("VEGETACIÓN SECUNDARIA")
-    m2 <- m2 %>% hideGroup("AUTOCORR VEGETACIÓN SECUNDARIA")
+    m2
     
   })
   
-  
+
   output$mapa_impact <- renderLeaflet({
     
     m3 <- leaflet(mun_mapa) %>%
@@ -693,14 +638,7 @@ function(input, output, session) {
       options = layersControlOptions(collapsed = FALSE)
     )
     
-    m3 <- m3 %>% hideGroup("APROVECHAMIENTO MADERABLE")
-    m3 <- m3 %>% hideGroup("APROVECHAMIENTO NO MADERABLE")
-    m3 <- m3 %>% hideGroup("VOLUMEN AGRÍCOLA")
-    m3 <- m3 %>% hideGroup("VOLUMEN GANADERÍA")
-    m3 <- m3 %>% hideGroup("AUTOCORRELACIÓN APROVECHAMIENTO MADERABLE")
-    m3 <- m3 %>% hideGroup("AUTOCORRELACIÓN APROVECHAMIENTO NO MADERABLE")
-    m3 <- m3 %>% hideGroup("AUTOCORRELACIÓN PRODUCCIÓN AGRÍCOLA")
-    m3 <- m3 %>% hideGroup("AUTOCORRELACIÓN PRODUCCIÓN GANADERA")
+    m3  
     
   })
   
@@ -770,13 +708,12 @@ function(input, output, session) {
       options = layersControlOptions(collapsed = FALSE)
     )
     
-    m4 <- m4 %>% hideGroup("PAGOS PSA")
-    m4 <- m4 %>% hideGroup("AUTOCORRELACIÓN PSA")
+    m4
     
   })
-  
-  
+    
+    
   # LOS PROXIES PERMITEN ENCENDER Y APAGAR ELEMENTOS EN R LEAFLET
-  
+
   
 }

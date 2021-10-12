@@ -31,7 +31,7 @@ library(rgeoda)
 load(url("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/Rdata/datos.RData"))
 load(url("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/Rdata/carto.RData"))
 load(url("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/Rdata/autocorrelaciones.RData"))
-#load(url("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/Rdata/thematic_maps.RData"))
+load(url("https://raw.githubusercontent.com/iskarwaluyo/dpsir_autocorrelation_oaxaca_forest/master/data/Rdata/thematic_maps.RData"))
 
 # DATA WRANGLING
 
