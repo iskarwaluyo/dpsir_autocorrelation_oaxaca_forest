@@ -57,37 +57,42 @@ mun_mapa_agricola$SSCPCT_2016 <- 100*(mun_mapa_agricola$SSC_2016/(as.numeric(mun
 # VALUE OF FORESTRY, AGRICULTURE AND LIVESTOCK PRODUCTION
 
 bins_vpm <- c(0, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, Inf)
-pal_vpm <- colorBin(palette = colorRamp(c("#f7ffec", "#d2fa97", "#f3facb", "#fff488", "#ff383f"), interpolate="spline"), domain = mun_mapa_maderable$VPM_2016, bins = bins_vpm)
+pal_vpm <- colorBin(palette = colorRamp(c("#f7ffec", "#d2fa97", "#f3facb", "#fff488", "#ff383f"), interpolate="spline"), 
+                    domain = mun_mapa_maderable$VPM_2016, bins = bins_vpm, na.color="transparent")
 
 bins_vpnm <- c(0, 2, 10, 50, 250, Inf)
-pal_vpnm <- colorBin(palette = colorRamp(c("#f7ffec", "#d2fa97", "#f3facb", "#fff488", "#ff383f"), interpolate="spline"), domain = mun_mapa_maderable$VPNM_2016, bins = bins_vpnm)
+pal_vpnm <- colorBin(palette = colorRamp(c("#f7ffec", "#d2fa97", "#f3facb", "#fff488", "#ff383f"), interpolate="spline"), 
+                     domain = mun_mapa_maderable$VPNM_2016, na.color="transparent", bins = bins_vpnm)
 
 bins_vpc <- c(0, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, 512000, 1024000, Inf)
-pal_vpc <- colorBin(palette = colorRamp(c("#f7ffec", "#d2fa97", "#f3facb", "#fff488", "#ff383f"), interpolate="spline"), domain = mun_mapa_agricola$VPC_2016, bins = bins_vpc)
+pal_vpc <- colorBin(palette = colorRamp(c("#f7ffec", "#d2fa97", "#f3facb", "#fff488", "#ff383f"), interpolate="spline"), 
+                    domain = mun_mapa_agricola$VPC_2016, na.color="transparent", bins = bins_vpc)
 
 bins_vpt <- c(0, 100, 500, 2500, 12500, 62500, 312500, Inf)
-pal_vpt <- colorBin(palette = colorRamp(c("#f7ffec", "#d2fa97", "#f3facb", "#fff488", "#ff383f"), interpolate="spline"), domain = mun_mapa_ganadera$VPT_2016, bins = bins_vpt)
+pal_vpt <- colorBin(palette = colorRamp(c("#f7ffec", "#d2fa97", "#f3facb", "#fff488", "#ff383f"), interpolate="spline"), 
+                    domain = mun_mapa_ganadera$VPT_2016, na.color="transparent", bins = bins_vpt)
 
 bins_pob <- c(50, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, Inf)
-pal_pob <- colorBin(palette = colorRamp(c("#f7ffec", "#d2fa97", "#f3facb", "#fff488", "#ff383f"), interpolate="spline"), domain = mun_mapa_pob$POB_2015, bins = bins_pob)
+pal_pob <- colorBin(palette = colorRamp(c("#f7ffec", "#d2fa97", "#f3facb", "#fff488", "#ff383f"), interpolate="spline"), 
+                    domain = mun_mapa_pob$POB_2015, na.color="transparent", bins = bins_pob)
 
 # PRESSURE
 # PERCENTAGE OF SURFACE AREA USED FOR AGRICULTURE AND LIVESTOCK
 
 bins_pct <- c(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
-pal_pct <- colorBin(palette = "Oranges", bins = bins_pct)
+pal_pct <- colorBin(palette = "Oranges", na.color="transparent", bins = bins_pct)
 
 # STATE
 # LAND USE COVERAGE
 
 bins_primveg <- bins_pct
-pal_primveg <- colorBin(palette= "Greens", domain = mun_mapa_vegprimaria$PCT_PRIMARIA, bins = bins_primveg)
+pal_primveg <- colorBin(palette= "Greens", na.color="transparent", domain = mun_mapa_vegprimaria$PCT_PRIMARIA, bins = bins_primveg)
 
 # IMPACT
 # APROVECHAMIENTO MADERABLE Y NO MADERABLE
 
 bins_apm <- c(0, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, Inf)
-pal_apm <- colorBin(palette= "Blues", domain = mun_mapa_maderable$APM_2016, bins = bins_apm)
+pal_apm <- colorBin(palette= "Blues", na.color="transparent", domain = mun_mapa_maderable$APM_2016, bins = bins_apm)
 
 bins_apnm <- c(0, 500, 1000, 2000, Inf)
 pal_apnm <- colorBin(palette= "Blues", domain = mun_mapa_maderable$APM_2016, bins = bins_apnm)
@@ -135,15 +140,15 @@ pop_pressure_agricola <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
                                 "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
                                 "<b><br/> SUPERFICIE SEMBRADA (ha): </b>", mun_mapa_agricola$SSC_2016)
 
-
 # POP-UPS STATE
 
 pop_state_primaria <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
                              "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
-                             "<b><br/> SUPERFICIE CON VEGETACIÓN PRIMARIA (ha): </b>", mun_mapa_vegprimaria$VEG_PRIM_SUM)
+                             "<b><br/> SUPERFICIE CON VEGETACIÓN PRIMARIA (ha): </b>", mun_mapa_vegprimaria$VEG_PRIM_SUM,
+                             "<b><br/> SUPERFICIE CON VEGETACIÓN SECUNDARIA (ha): </b>", mun_mapa_vegsecundaria$VEG_SECA_SUM)
+
 
 # POP-UPS IMPACT
-
 
 pop_impact_maderable <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
                                "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
@@ -176,7 +181,6 @@ pop_maderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", maderable_autocor$NO
 pop_agricultura_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
                                 "<b><br/> VALOR PRODUCCIÓN AGRÍCOLA (miles de pesos): </b>", agricola_autocor$VPC_2016,
                                 "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN AGRÍCOLA: </b>", agricola_autocor$CL_VPV2016)
-
 
 pop_ganaderia_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
                                "<b><br/> VALOR PRODUCCIÓN GANADERA (miles de pesos): </b>", ganadera_autocor$VPT_2016,

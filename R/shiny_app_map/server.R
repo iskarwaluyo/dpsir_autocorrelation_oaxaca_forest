@@ -316,8 +316,6 @@ function(input, output, session) {
       addMapPane("A", zIndex = 490) %>% #
       addMapPane("B", zIndex = 480) %>% # 
       
-      
-      
       addTiles() %>%
       addTiles(group = "Open Street Map") %>%
       addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
@@ -372,7 +370,7 @@ function(input, output, session) {
     m1 <- m1 %>% addLayersControl(
       baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
       overlayGroups = c("SUPERFICIE SEMBRADA", "AUTOCORRELACIÓN SUPERFICIE SEMBRADA"),
-      options = layersControlOptions(collapsed = FALSE)
+      options = layersControlOptions(collapsed = TRUE)
     )
     
     m1 <- m1 %>% hideGroup("SUPERFICE SEMBRADA")
@@ -380,7 +378,7 @@ function(input, output, session) {
     
   })
   
-  # GENERAR MAPA PRESSURE
+  # GENERAR MAPA STATE
   
   output$mapa_state <- renderLeaflet({
     
@@ -494,6 +492,7 @@ function(input, output, session) {
     
   })
   
+  # GENERAR MAPA IMPACT
   
   output$mapa_impact <- renderLeaflet({
     
@@ -555,49 +554,6 @@ function(input, output, session) {
                                 direction = "auto"),
                               popup = ~pop_impact_maderable)
     
-    m3 <- m3 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "C"),
-                              fillOpacity = 0.7,
-                              fillColor = ~pal_vpc(as.numeric(VPC_2016)),
-                              opacity = .3,
-                              weight = 1,
-                              color = "#4D4D4D",
-                              dashArray = "2",
-                              highlight = highlightOptions(
-                                weight = 1,
-                                color = "#4D4D4D",
-                                fillOpacity = 0.1,
-                                dashArray = "2",
-                                bringToFront = TRUE),
-                              group = "VOLUMEN AGRÍCOLA",
-                              labelOptions = labelOptions(
-                                style = list("font-weight" = "normal", padding = "3px 8px"),
-                                textsize = "15px",
-                                direction = "auto"),
-                              popup = ~pop_impact_agricola)
-    
-    
-    m3 <- m3 %>%  addPolygons(data = mun_mapa_ganadera, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "D"),
-                              fillOpacity = 0.7,
-                              fillColor = ~pal_vpt(as.numeric(PT_2016)),
-                              opacity = .3,
-                              weight = 1,
-                              color = "#4D4D4D",
-                              dashArray = "2",
-                              highlight = highlightOptions(
-                                weight = 1,
-                                color = "#4D4D4D",
-                                fillOpacity = 0.1,
-                                dashArray = "2",
-                                bringToFront = TRUE),
-                              group = "VOLUMEN GANADERÍA",
-                              labelOptions = labelOptions(
-                                style = list("font-weight" = "normal", padding = "3px 8px"),
-                                textsize = "15px",
-                                direction = "auto"),
-                              popup = ~pop_impact_ganadera)
-    
     m3 <- m3 %>%  addPolygons(data = maderable_autocor, stroke = TRUE, smoothFactor = 0.3,
                               options = pathOptions(pane = "D"),
                               fillOpacity = 1,
@@ -640,68 +596,24 @@ function(input, output, session) {
                                 direction = "auto"),
                               popup = ~pop_aprovechamientonomaderable_autocor)
     
-    m3 <- m3 %>%  addPolygons(data = agricola_autocor, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "E"),
-                              fillOpacity = 1,
-                              fillColor = ~pal_autocorr(CL_SSCPCT),
-                              opacity = .3,
-                              weight = 1,
-                              color = "#4D4D4D",
-                              dashArray = "2",
-                              highlight = highlightOptions(
-                                weight = 1,
-                                color = "#4D4D4D",
-                                fillOpacity = 0.1,
-                                dashArray = "2",
-                                bringToFront = TRUE),
-                              group = "AUTOCORRELACIÓN PRODUCCIÓN AGRÍCOLA",
-                              labelOptions = labelOptions(
-                                style = list("font-weight" = "normal", padding = "3px 8px"),
-                                textsize = "15px",
-                                direction = "auto"),
-                              popup = ~pop_aprovechamientonomaderable_autocor)
-    
-    m3 <- m3 %>%  addPolygons(data = ganadera_autocor, stroke = TRUE, smoothFactor = 0.3,
-                              options = pathOptions(pane = "F"),
-                              fillOpacity = 1,
-                              fillColor = ~pal_autocorr(CL_VPT2016),
-                              opacity = .3,
-                              weight = 1,
-                              color = "#4D4D4D",
-                              dashArray = "2",
-                              highlight = highlightOptions(
-                                weight = 1,
-                                color = "#4D4D4D",
-                                fillOpacity = 0.1,
-                                dashArray = "2",
-                                bringToFront = TRUE),
-                              group = "AUTOCORRELACIÓN PRODUCCIÓN GANADERA",
-                              labelOptions = labelOptions(
-                                style = list("font-weight" = "normal", padding = "3px 8px"),
-                                textsize = "15px",
-                                direction = "auto"),
-                              popup = ~pop_produccionganadera_autocor)
-    
     
     # CONTROL DE CAPAS
     m3 <- m3 %>% addLayersControl(
       baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-      overlayGroups = c("APROVECHAMIENTO MADERABLE", "APROVECHAMIENTO NO MADERABLE", "VOLUMEN AGRÍCOLA", "VOLUMEN GANADERÍA",
-                        "AUTOCORRELACIÓN APROVECHAMIENTO MADERABLE", "AUTOCORRELACIÓN APROVECHAMIENTO NO MADERABLE",
-                        "AUTOCORRELACIÓN PRODUCCIÓN AGRÍCOLA", "AUTOCORRELACIÓN PRODUCCIÓN GANADERA"),
-      options = layersControlOptions(collapsed = FALSE)
+      overlayGroups = c("APROVECHAMIENTO MADERABLE", "APROVECHAMIENTO NO MADERABLE",
+                        "AUTOCORRELACIÓN APROVECHAMIENTO MADERABLE", "AUTOCORRELACIÓN APROVECHAMIENTO NO MADERABLE"),
+      options = layersControlOptions(collapsed = TRUE)
     )
     
     m3 <- m3 %>% hideGroup("APROVECHAMIENTO MADERABLE")
     m3 <- m3 %>% hideGroup("APROVECHAMIENTO NO MADERABLE")
-    m3 <- m3 %>% hideGroup("VOLUMEN AGRÍCOLA")
-    m3 <- m3 %>% hideGroup("VOLUMEN GANADERÍA")
     m3 <- m3 %>% hideGroup("AUTOCORRELACIÓN APROVECHAMIENTO MADERABLE")
     m3 <- m3 %>% hideGroup("AUTOCORRELACIÓN APROVECHAMIENTO NO MADERABLE")
-    m3 <- m3 %>% hideGroup("AUTOCORRELACIÓN PRODUCCIÓN AGRÍCOLA")
-    m3 <- m3 %>% hideGroup("AUTOCORRELACIÓN PRODUCCIÓN GANADERA")
+
     
   })
+  
+  # GENERAR MAPA RESPONSE
   
   output$mapa_response <- renderLeaflet({
     
@@ -714,11 +626,7 @@ function(input, output, session) {
       addTiles() %>%
       addTiles(group = "Open Street Map") %>%
       addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
-      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>%
-      addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = .2,
-                  fillColor = ~pal(as.numeric(CVE_MUN)),
-                  label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ","))) 
-    
+      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") 
     
     m4 <- m4 %>%  addPolygons(data = mun_mapa_psa, stroke = TRUE, smoothFactor = 0.3,
                               options = pathOptions(pane = "A"),
@@ -766,7 +674,7 @@ function(input, output, session) {
     m4 <- m4 %>% addLayersControl(
       baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
       overlayGroups = c("PAGOS PSA", "AUTOCORRELACIÓN PSA"),
-      options = layersControlOptions(collapsed = FALSE)
+      options = layersControlOptions(collapsed = TRUE)
     )
     
     m4 <- m4 %>% hideGroup("PAGOS PSA")
@@ -779,13 +687,57 @@ function(input, output, session) {
   observe({
     proxy <- leafletProxy("mapa_drivers", data = mun_mapa_maderable)
     proxy %>% clearControls()
-    if (input$leyenda) {
+    if (input$leyenda_driver) {
       proxy %>% 
         addLegend("topleft", group = "MADERABLE", pal = pal_vpm, values = ~VPM_2016, opacity = 1.0, title = "Producción maderable") %>%
         addLegend("topleft", group = "NO MADERABLE", pal = pal_vpnm, values = ~VPNM_2016, opacity = 1.0, title = "Producción no maderable") %>%
         addLegend("topleft", group = "AGRÍCOLA", pal = pal_vpc, values = mun_mapa_agricola$VPC_2016, opacity = 1.0, title = "Producción agrícola") %>%
         addLegend("topleft", group = "GANADERA", pal = pal_vpt, values =mun_mapa_ganadera$VPT_2016, opacity = 1.0, title = "Producción ganadera") %>%  
         addLegend("topleft", group = "POBLACIÓN", pal = pal_pob, values =  mun_mapa_pob$POB_2015, opacity = 1.0, title = "Población")
+    }
+  })
+  
+  observe({
+    proxy <- leafletProxy("mapa_pressure", data = mun_mapa_agricola)
+    proxy %>% clearControls()
+    if (input$leyenda_pressure) {
+      proxy %>% 
+        addLegend("topleft", group = "SUPERFICIE SEMBRADA", pal = pal_pct, values = ~SSCPCT_2016, opacity = 1.0, title = "Superfice ocupada con actividad agrícola (%)") %>%
+        addLegend("topleft", group = "AUTOCORRELACIÓN SUPERFICIE SEMBRADA", pal = pal_autocorr, values = c(0:4), opacity = 1.0, title = "Autocorrelación (LISA)") 
+    }
+  })
+  
+  observe({
+    proxy <- leafletProxy("mapa_state", data = mun_mapa_vegprimaria)
+    proxy %>% clearControls()
+    if (input$leyenda_state) {
+      proxy %>% 
+        addLegend("topleft", group = "VEGETACIÓN PRIMARIA", pal = pal_primveg, values = c(0:100), opacity = 1.0, title = "Superfice con vegetación primaria (%)") %>%
+        addLegend("topleft", group = "VEGETACIÓN SECUNDARIA", pal = pal_primveg, values = c(0:100), opacity = 1.0, title = "Superfice con vegetación secundaria (%)") %>% 
+        addLegend("topleft", group = "AUTOCORR VEGETACIÓN PRIMARIA", pal = pal_autocorr, values = c(0:4), opacity = 1.0, title = "Autocorrelación (LISA)") %>%
+        addLegend("topleft", group = "AUTOCORR VEGETACIÓN SECUNDARIA", pal = pal_autocorr, values = c(0:4), opacity = 1.0, title = "Autocorrelación (LISA)")
+    }
+  })
+
+  observe({
+    proxy <- leafletProxy("mapa_impact", data = mun_mapa_maderable)
+    proxy %>% clearControls()
+    if (input$leyenda_impact) {
+      proxy %>% 
+        addLegend("topleft", group = "APROVECHAMIENTO MADERABLE", pal = pal_apm, values = ~APM_2016, opacity = 1.0, title = "Producción maderable (metros cúbicos)") %>%
+        addLegend("topleft", group = "APROVECHAMIENTO NO MADERABLE", pal = pal_apnm, values = ~APNM_2016, opacity = 1.0, title = "Producción no maderable (toneladas)") %>% 
+        addLegend("topleft", group = "AUTOCORRELACIÓN APROVECHAMIENTO MADERABLE", pal = pal_autocorr, values = c(0:4), opacity = 1.0, title = "Autocorrelación (LISA)") %>%
+        addLegend("topleft", group = "AUTOCORRELACIÓN APROVECHAMIENTO NO MADERABLE", pal = pal_autocorr, values = c(0:4), opacity = 1.0, title = "Autocorrelación (LISA)")
+    }
+  })
+  
+  observe({
+    proxy <- leafletProxy("mapa_response", data = mun_mapa_psa)
+    proxy %>% clearControls()
+    if (input$leyenda_response) {
+      proxy %>% 
+        addLegend("topleft", group = "PAGOS PSA", pal = pal_psa, values = ~PCT_PSA, opacity = 1.0, title = "Área sujeta a PSA (%)") %>%
+        addLegend("topleft", group = "AUTOCORRELACIÓN PSA", pal = pal_autocorr, values = c(0:4), opacity = 1.0, title = "Autocorrelación (LISA)")
     }
   })
   
