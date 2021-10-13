@@ -74,6 +74,23 @@ function(input, output, session) {
       addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
       addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") 
 
+    m0 <- m0 %>%  addPolygons(data = mun_mapa_regiones, stroke = TRUE, smoothFactor = 0.3,
+                              options = pathOptions(pane = "AA"),
+                              fillOpacity = .6,
+                              fillColor = "transparent",
+                              opacity = .5,
+                              weight = 5,
+                              color = ~pal_reg(REGION),
+                              dashArray = "2",
+                              highlight = highlightOptions(
+                                weight = 1,
+                                color = "#4D4D4D",
+                                fillOpacity = 0.1,
+                                dashArray = "2",
+                                bringToFront = TRUE),
+                              group = "REGIONES",
+                              popup = paste("Región: ", mun_mapa_regiones$REGION, "<br>")
+    )
     m0 <- m0 %>%  addPolygons(data = mun_mapa_maderable, stroke = TRUE, smoothFactor = 0.3,
                               options = pathOptions(pane = "A"),
                               fillOpacity = .7,
@@ -287,7 +304,7 @@ function(input, output, session) {
     # CONTROL DE CAPAS
     m0 <- m0 %>% addLayersControl(
       baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-      overlayGroups = c("MADERABLE", "NO MADERABLE", "AGRÍCOLA", "GANADERA", "POBLACIÓN", "REGIONES",
+      overlayGroups = c("REGIONES", "MADERABLE", "NO MADERABLE", "AGRÍCOLA", "GANADERA", "POBLACIÓN", 
                         "AUTOCORRELACIÓN MADERABLE", "AUTOCORRELACIÓN NO MADERABLE", "AUTOCORRELACIÓN AGRÍCOLA",
                         "AUTOCORRELACIÓN GANADERA", "AUTOCORRELACIÓN POBLACIÓN"),
       options = layersControlOptions(collapsed = TRUE)
@@ -313,16 +330,32 @@ function(input, output, session) {
   output$mapa_pressure <- renderLeaflet({
     
     m1 <- leaflet(mun_mapa) %>%
+      addMapPane("AA", zIndex = 500) %>% #
       addMapPane("A", zIndex = 490) %>% #
       addMapPane("B", zIndex = 480) %>% # 
       
       addTiles() %>%
       addTiles(group = "Open Street Map") %>%
       addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
-      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>%
-      addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = .2,
-                  fillColor = ~pal(as.numeric(CVE_MUN)),
-                  label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ",")))
+      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") 
+    
+    m1 <- m1 %>%  addPolygons(data = mun_mapa_regiones, stroke = TRUE, smoothFactor = 0.3,
+                              options = pathOptions(pane = "AA"),
+                              fillOpacity = .6,
+                              fillColor = "transparent",
+                              opacity = .5,
+                              weight = 5,
+                              color = ~pal_reg(REGION),
+                              dashArray = "2",
+                              highlight = highlightOptions(
+                                weight = 1,
+                                color = "#4D4D4D",
+                                fillOpacity = 0.1,
+                                dashArray = "2",
+                                bringToFront = TRUE),
+                              group = "REGIONES",
+                              popup = paste("Región: ", mun_mapa_regiones$REGION, "<br>")
+    )
     
     m1 <- m1 %>%  addPolygons(data = mun_mapa_agricola, stroke = TRUE, smoothFactor = 0.3,
                               options = pathOptions(pane = "A"),
@@ -369,7 +402,7 @@ function(input, output, session) {
     # CONTROL DE CAPAS
     m1 <- m1 %>% addLayersControl(
       baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-      overlayGroups = c("SUPERFICIE SEMBRADA", "AUTOCORRELACIÓN SUPERFICIE SEMBRADA"),
+      overlayGroups = c("REGIONES", "SUPERFICIE SEMBRADA", "AUTOCORRELACIÓN SUPERFICIE SEMBRADA"),
       options = layersControlOptions(collapsed = TRUE)
     )
     
@@ -383,6 +416,7 @@ function(input, output, session) {
   output$mapa_state <- renderLeaflet({
     
     m2 <- leaflet(mun_mapa) %>%
+      addMapPane("AA", zIndex = 500) %>% #
       addMapPane("A", zIndex = 490) %>% #
       addMapPane("B", zIndex = 480) %>% # 
       addMapPane("C", zIndex = 470) %>% # 
@@ -391,10 +425,25 @@ function(input, output, session) {
       addTiles() %>%
       addTiles(group = "Open Street Map") %>%
       addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
-      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>%
-      addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = .2,
-                  fillColor = ~pal(as.numeric(NOMGEO)),
-                  label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ","))) 
+      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite")
+    
+    m2 <- m2 %>%  addPolygons(data = mun_mapa_regiones, stroke = TRUE, smoothFactor = 0.3,
+                              options = pathOptions(pane = "AA"),
+                              fillOpacity = .6,
+                              fillColor = "transparent",
+                              opacity = .5,
+                              weight = 5,
+                              color = ~pal_reg(REGION),
+                              dashArray = "2",
+                              highlight = highlightOptions(
+                                weight = 1,
+                                color = "#4D4D4D",
+                                fillOpacity = 0.1,
+                                dashArray = "2",
+                                bringToFront = TRUE),
+                              group = "REGIONES",
+                              popup = paste("Región: ", mun_mapa_regiones$REGION, "<br>")
+    )
     
     m2 <- m2 %>%  addPolygons(data = mun_mapa_vegprimaria, stroke = TRUE, smoothFactor = 0.3,
                               options = pathOptions(pane = "A"),
@@ -481,7 +530,7 @@ function(input, output, session) {
     # CONTROL DE CAPAS
     m2 <- m2 %>% addLayersControl(
       baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-      overlayGroups = c("VEGETACIÓN PRIMARIA", "VEGETACIÓN SECUNDARIA", "AUTCORR VEGETACION PRIMARIA", "AUTCORR VEGETACION SECUNDARIA"),
+      overlayGroups = c("REGIONES", "VEGETACIÓN PRIMARIA", "VEGETACIÓN SECUNDARIA", "AUTCORR VEGETACION PRIMARIA", "AUTCORR VEGETACION SECUNDARIA"),
       options = layersControlOptions(collapsed = FALSE)
     )
     
@@ -497,6 +546,7 @@ function(input, output, session) {
   output$mapa_impact <- renderLeaflet({
     
     m3 <- leaflet(mun_mapa) %>%
+      addMapPane("AA", zIndex = 500) %>% #
       addMapPane("A", zIndex = 490) %>% #
       addMapPane("B", zIndex = 480) %>% # 
       addMapPane("C", zIndex = 470) %>% # 
@@ -507,10 +557,25 @@ function(input, output, session) {
       addTiles() %>%
       addTiles(group = "Open Street Map") %>%
       addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
-      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>%
-      addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = .2,
-                  fillColor = ~pal(as.numeric(NOMGEO)),
-                  label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ","))) 
+      addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") 
+    
+    m3 <- m3 %>%  addPolygons(data = mun_mapa_regiones, stroke = TRUE, smoothFactor = 0.3,
+                              options = pathOptions(pane = "AA"),
+                              fillOpacity = .6,
+                              fillColor = "transparent",
+                              opacity = .5,
+                              weight = 5,
+                              color = ~pal_reg(REGION),
+                              dashArray = "2",
+                              highlight = highlightOptions(
+                                weight = 1,
+                                color = "#4D4D4D",
+                                fillOpacity = 0.1,
+                                dashArray = "2",
+                                bringToFront = TRUE),
+                              group = "REGIONES",
+                              popup = paste("Región: ", mun_mapa_regiones$REGION, "<br>")
+    )
     
     m3 <- m3 %>%  addPolygons(data = mun_mapa_maderable, stroke = TRUE, smoothFactor = 0.3,
                               options = pathOptions(pane = "A"),
@@ -600,7 +665,7 @@ function(input, output, session) {
     # CONTROL DE CAPAS
     m3 <- m3 %>% addLayersControl(
       baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-      overlayGroups = c("APROVECHAMIENTO MADERABLE", "APROVECHAMIENTO NO MADERABLE",
+      overlayGroups = c("REGIOINES", "APROVECHAMIENTO MADERABLE", "APROVECHAMIENTO NO MADERABLE",
                         "AUTOCORRELACIÓN APROVECHAMIENTO MADERABLE", "AUTOCORRELACIÓN APROVECHAMIENTO NO MADERABLE"),
       options = layersControlOptions(collapsed = TRUE)
     )
@@ -618,6 +683,7 @@ function(input, output, session) {
   output$mapa_response <- renderLeaflet({
     
     m4 <- leaflet(mun_mapa) %>%
+      addMapPane("AA", zIndex = 500) %>% #
       addMapPane("A", zIndex = 490) %>% #
       addMapPane("B", zIndex = 480) %>% # 
       addMapPane("C", zIndex = 470) %>% # 
@@ -627,6 +693,24 @@ function(input, output, session) {
       addTiles(group = "Open Street Map") %>%
       addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
       addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") 
+    
+    m4 <- m4 %>%  addPolygons(data = mun_mapa_regiones, stroke = TRUE, smoothFactor = 0.3,
+                              options = pathOptions(pane = "AA"),
+                              fillOpacity = .6,
+                              fillColor = "transparent",
+                              opacity = .5,
+                              weight = 5,
+                              color = ~pal_reg(REGION),
+                              dashArray = "2",
+                              highlight = highlightOptions(
+                                weight = 1,
+                                color = "#4D4D4D",
+                                fillOpacity = 0.1,
+                                dashArray = "2",
+                                bringToFront = TRUE),
+                              group = "REGIONES",
+                              popup = paste("Región: ", mun_mapa_regiones$REGION, "<br>")
+    )
     
     m4 <- m4 %>%  addPolygons(data = mun_mapa_psa, stroke = TRUE, smoothFactor = 0.3,
                               options = pathOptions(pane = "A"),
@@ -673,7 +757,7 @@ function(input, output, session) {
     # CONTROL DE CAPAS
     m4 <- m4 %>% addLayersControl(
       baseGroups = c("Open Street Map", "Toner", "Toner Lite"),
-      overlayGroups = c("PAGOS PSA", "AUTOCORRELACIÓN PSA"),
+      overlayGroups = c("REGIONES", "PAGOS PSA", "AUTOCORRELACIÓN PSA"),
       options = layersControlOptions(collapsed = TRUE)
     )
     

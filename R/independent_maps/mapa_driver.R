@@ -10,11 +10,7 @@ m0 <- leaflet(mun_mapa) %>%
   addTiles() %>%
   addTiles(group = "Open Street Map") %>%
   addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
-  addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>%
-  addPolygons(stroke = FALSE, smoothFactor = 0.3, fillOpacity = .2,
-              fillColor = ~pal(as.numeric(CVE_MUN)),
-              label = ~paste0(NOMGEO, ": ", formatC(NOMGEO, big.mark = ","))) 
-
+  addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite")
 
 m0 <- m0 %>%  addPolygons(data = mun_mapa_regiones, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "AA"),
@@ -31,16 +27,8 @@ m0 <- m0 %>%  addPolygons(data = mun_mapa_regiones, stroke = TRUE, smoothFactor 
                             dashArray = "2",
                             bringToFront = TRUE),
                           group = "REGIONES",
-                          
-                          addLabelOnlyMarkers(data = centers,
-                                              lng = ~x, lat = ~y, label = ~region,
-                                              labelOptions = labelOptions(noHide = TRUE, direction = 'top', textOnly = TRUE)) %>%
-                          
-                          
-                          labelOptions = labelOptions(
-                            style = list("font-weight" = "normal", padding = "3px 8px"),
-                            textsize = "15px",
-                            direction = "auto"))
+                          popup = paste("Región: ", mun_mapa_regiones$REGION, "<br>")
+                          )
 
 m0 <- m0 %>%  addPolygons(data = mun_mapa_maderable, stroke = TRUE, smoothFactor = 0.3,
                           options = pathOptions(pane = "A"),
