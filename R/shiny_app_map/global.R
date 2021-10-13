@@ -110,89 +110,80 @@ palb <- colorFactor( palette="Spectral", 1:7)
 
 # POP-UPS MADERABLE
 pop_driver_maderable <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                               "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                               "<b><br/> VALOR DE PRODUCCIÓN MADERABLE: </b>", mun_mapa_maderable$VPM_2016)
+                               "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
+                               "<b><br/> VALOR DE PRODUCCIÓN MADERABLE (miles de pesos): </b>", mun_mapa_maderable$VPM_2016)
 
 pop_driver_no_maderable <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                                  "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                                  "<b><br/> VALOR DE PRODUCCIÓN MADERABLE: </b>", mun_mapa_maderable$VPNM_2016)
+                                  "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
+                                  "<b><br/> VALOR DE PRODUCCIÓN NO MADERABLE (miles de pesos): </b>", mun_mapa_maderable$VPNM_2016)
 
 pop_driver_agricola <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                              "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                              "<b><br/> VALOR DE PRODUCCIÓN DE CULTIVO PRINCIPAL: </b>", mun_mapa_agricola$VPC_2016)
+                              "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
+                              "<b><br/> VALOR DE PRODUCCIÓN DE CULTIVO PRINCIPAL (miles de pesos): </b>", mun_mapa_agricola$VPC_2016)
 
 pop_driver_ganadera <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                              "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                              "<b><br/> VALOR DE PRODUCCIÓN DE GANADERA: </b>", mun_mapa_ganadera$VPT_2016,
-                              "<b><br/> VOLUMEN DE PRODUCCIÓN GANADERA: </b>", mun_mapa_ganadera$PT_2016)
+                              "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
+                              "<b><br/> VALOR DE PRODUCCIÓN DE GANADERA (pesos): </b>", mun_mapa_ganadera$VPT_2016)
 
 pop_driver_poblacion <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                              "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                              "<b><br/> POBLACIÓN: </b>", mun_mapa_pob$POB_2015)
+                              "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
+                              "<b><br/> POBLACIÓN (personas): </b>", mun_mapa_pob$POB_2015)
 
 # POP-UPS PRESSURE
 
 pop_pressure_agricola <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                                "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                                "<b><br/> SUPERFICIE SEMBRADA: </b>", mun_mapa_agricola$SSC_2016)
+                                "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
+                                "<b><br/> SUPERFICIE SEMBRADA (ha): </b>", mun_mapa_agricola$SSC_2016)
 
 
 # POP-UPS STATE
 
 pop_state_primaria <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                             "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                             "<b><br/> SUPERFICIE CON VEGETACIÓN PRIMARIA (HA): </b>", mun_mapa_vegprimaria$AREA_2)
+                             "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
+                             "<b><br/> SUPERFICIE CON VEGETACIÓN PRIMARIA (ha): </b>", mun_mapa_vegprimaria$VEG_PRIM_SUM)
 
 # POP-UPS IMPACT
 
 
 pop_impact_maderable <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                               "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                               "<b><br/> VALOR DE PRODUCCIÓN MADERABLE: </b>", mun_mapa_maderable$VPM_2016)
+                               "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
+                               "<b><br/> VOLUMEN DE PRODUCCIÓN MADERABLE (metros cúbicos): </b>", mun_mapa_maderable$PM_2016)
 
 pop_impact_no_maderable <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                                  "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                                  "<b><br/> VALOR DE PRODUCCIÓN NO-MADERABLE: </b>", mun_mapa_maderable$VPNM_2016)
-
-pop_impact_agricola <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                                  "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                                  "<b><br/> VALOR DE PRODUCCIÓN AGRÍCOLA: </b>", mun_mapa_agricola$VPC_2016)
-
-pop_impact_ganadera <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                                 "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                                 "<b><br/> VALOR DE PRODUCCIÓN GANADERA: </b>", mun_mapa_ganadera$VPT_2016)
+                                  "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
+                                  "<b><br/> VALOR DE PRODUCCIÓN NO-MADERABLE (toneladas): </b>", mun_mapa_maderable$PNM_2016)
 
 # POP-UPS RESPONSE
 
 pop_response <- paste0("<b><br/> MUNICIPIO: </b>", mun_mapa$NOMGEO,
-                       "<b><br/> SUPERFICIE: </b>", mun_mapa$AREA,
-                       "<b><br/> SUPERFICE ELEGIBLE PARA PSA: </b>", mun_mapa_psa$sum)
+                       "<b><br/> SUPERFICIE TOTAL (ha): </b>", mun_mapa$AREA,
+                       "<b><br/> SUPERFICE ELEGIBLE PARA PSA (%): </b>", 100*mun_mapa_psa$sum)
 
 # POP-UPS AUTOCORR
 
 pop_psa_autocor <- paste0("<b><br/> MUNICIPIO: </b>", psa_autocor$NOMGEO,
-                       "<b><br/> SUPERFICIE CON PSA: </b>", psa_autocor$PCT_PSA,
-                       "<b><br/> AUTOCORRELACIÓN PSA: </b>", psa_autocor$CL_PCTPSA)
+                       "<b><br/> SUPERFICIE CON PSA (ha): </b>", psa_autocor$PCT_PSA,
+                       "<b><br/> AUTOCORRELACIÓN PSA (%): </b>", psa_autocor$CL_PCTPSA)
 
 pop_maderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", maderable_autocor$NOMGEO,
-                          "<b><br/> VALOR PRODUCCIÓN MADERABLE: </b>", mun_mapa_maderable$VPM_2016,
+                          "<b><br/> VALOR PRODUCCIÓN MADERABLE (miles de pesos): </b>", mun_mapa_maderable$VPM_2016,
                           "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN MADERABLE: </b>", maderable_autocor$CL_VPM)
 
 pop_maderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", maderable_autocor$NOMGEO,
-                                "<b><br/> VALOR PRODUCCIÓN NO MADERABLE: </b>", mun_mapa_maderable$VPNM_2016,
+                                "<b><br/> VALOR PRODUCCIÓN NO MADERABLE (miles de pesos): </b>", mun_mapa_maderable$VPNM_2016,
                                 "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN NO MADERABLE: </b>", maderable_autocor$CL_VPNM)
 
 pop_agricultura_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
-                                "<b><br/> VALOR PRODUCCIÓN AGRÍCOLA: </b>", agricola_autocor$VPC_2016,
+                                "<b><br/> VALOR PRODUCCIÓN AGRÍCOLA (miles de pesos): </b>", agricola_autocor$VPC_2016,
                                 "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN AGRÍCOLA: </b>", agricola_autocor$CL_VPV2016)
 
 
 pop_ganaderia_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
-                               "<b><br/> VALOR PRODUCCIÓN GANADERA: </b>", ganadera_autocor$VPT_2016,
+                               "<b><br/> VALOR PRODUCCIÓN GANADERA (miles de pesos): </b>", ganadera_autocor$VPT_2016,
                                "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN GANADERA: </b>", ganadera_autocor$CL_VPT2016)
 
 pop_poblacion_autocor <-  paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
-                                 "<b><br/> VALOR PRODUCCIÓN GANADERA: </b>", pob_autocor$POB_2015,
+                                 "<b><br/> VALOR PRODUCCIÓN GANADERA (pesos): </b>", pob_autocor$POB_2015,
                                  "<b><br/> AUTOCORRELACIÓN VALOR PRODUCCIÓN GANADERA: </b>", pob_autocor$CL_POB2015)
 
 pop_superficiesembrada_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
@@ -200,11 +191,11 @@ pop_superficiesembrada_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_au
                                          "<b><br/> AUTOCORRELACIÓN DE LA SUPERFICIE SEMBRADA: </b>", agricola_autocor$CL_SSCPCT)
 
 pop_aprovechamientomaderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
-                                         "<b><br/> APROVECHAMIENTO MADERABLE (): </b>", mun_mapa_maderable$APM_2016,
+                                         "<b><br/> APROVECHAMIENTO MADERABLE (metros cúbicos): </b>", mun_mapa_maderable$PM_2016,
                                          "<b><br/> AUTOCORRELACIÓN DEL APROVECHAMIENTO MADERABLE: </b>", maderable_autocor$CL_APM)
 
 pop_aprovechamientonomaderable_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,
-                                                 "<b><br/> APROVECHAMIENTO NO MADERABLE (): </b>", mun_mapa_maderable$APNM_2016,
+                                                 "<b><br/> APROVECHAMIENTO NO MADERABLE (toneladas): </b>", mun_mapa_maderable$APNM_2016,
                                                  "<b><br/> AUTOCORRELACIÓN DEL APROVECHAMIENTO NO MADERABLE: </b>", maderable_autocor$CL_APNM)
 
 pop_produccionagricola_autocor <- paste0("<b><br/> MUNICIPIO: </b>", agricola_autocor$NOMGEO,

@@ -291,9 +291,8 @@ function(input, output, session) {
                         "AUTOCORRELACIÓN MADERABLE", "AUTOCORRELACIÓN NO MADERABLE", "AUTOCORRELACIÓN AGRÍCOLA",
                         "AUTOCORRELACIÓN GANADERA", "AUTOCORRELACIÓN POBLACIÓN"),
       options = layersControlOptions(collapsed = TRUE)
-      
-      
     )
+    
     m0 <- m0 %>% hideGroup("MADERABLE")
     m0 <- m0 %>% hideGroup("NO MADERABLE")
     m0 <- m0 %>% hideGroup("AGRÍCOLA")
@@ -777,6 +776,17 @@ function(input, output, session) {
   
   
   # LOS PROXIES PERMITEN ENCENDER Y APAGAR ELEMENTOS EN R LEAFLET
-  
+  observe({
+    proxy <- leafletProxy("mapa_drivers", data = mun_mapa_maderable)
+    proxy %>% clearControls()
+    if (input$leyenda) {
+      proxy %>% 
+        addLegend("topleft", group = "MADERABLE", pal = pal_vpm, values = ~VPM_2016, opacity = 1.0, title = "Producción maderable") %>%
+        addLegend("topleft", group = "NO MADERABLE", pal = pal_vpnm, values = ~VPNM_2016, opacity = 1.0, title = "Producción no maderable") %>%
+        addLegend("topleft", group = "AGRÍCOLA", pal = pal_vpc, values = mun_mapa_agricola$VPC_2016, opacity = 1.0, title = "Producción agrícola") %>%
+        addLegend("topleft", group = "GANADERA", pal = pal_vpt, values =mun_mapa_ganadera$VPT_2016, opacity = 1.0, title = "Producción ganadera") %>%  
+        addLegend("topleft", group = "POBLACIÓN", pal = pal_pob, values =  mun_mapa_pob$POB_2015, opacity = 1.0, title = "Población")
+    }
+  })
   
 }
